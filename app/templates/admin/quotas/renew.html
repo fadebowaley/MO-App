@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+
+{% block title %}Quota{% endblock %}
+{% block body %}
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<!--<style>
+    label{
+      display: None;
+    }
+    </style> -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Quota Form</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Official</a></li>
+                        <li class="breadcrumb-item active">Admin Only Form</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        {% from "macros.html" import render_field %}
+        {% import "bootstrap/utils.html" as utils %}
+		{% import "bootstrap/wtf.html" as wtf %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-0">
+                 
+                    {{ utils.flashed_messages() }}
+                    <!-- The beginning of quota Form-->
+                    <div class="card-body">
+                         <form action="" method="post" enctype="multipart/form-data" class="form" role="form">
+              
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    {# Show all subforms #}
+        
+                                    <form id="lapform" action="" method="POST" class="form" role="form">
+                                        {{ form.hidden_tag() }}
+                            
+                                        <div id="subforms-container">
+                                            {% for subform in form.renew %}
+                            
+                            
+                                                <div>
+                                                    
+                                                    {{ subform.new_issue_date }}
+                                                                        
+                                                </div>
+                                                
+                                                <div>
+                                                    
+                                                    {{ subform.new_expiry_date }}
+
+                                          
+                                                    {% endfor %}
+                                        </div>
+                            
+                                        
+                                        </form>
+                            
+                                    
+                                  
+                                    
+                                 </div>
+                                
+                             </div>
+
+                            <div class="text-right form-group">
+                                <button type="submit" class="btn btn-primary">Add Quota</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>			
+</div>
+<!-- /Main Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

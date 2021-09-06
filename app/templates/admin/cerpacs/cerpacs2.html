@@ -1,0 +1,116 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+                <div class="row align-items-center">
+                <div class="col">
+                  <br>  {{ utils.flashed_messages() }} </br>
+                    <h3 class="page-title">Cerpacs Documents </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin Only</li>  
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_cerpac') }}" class="btn add-btn" ><i class="fa fa-plus"></i> Add Cerpacs</a>
+                    <div class="view-icons">
+                        <a href="employees.html" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                        <a href="employees-list.html" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee ID</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee Name</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Mobile Number</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+            </div>     
+        </div>
+        <!-- /Search Filter -->
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    {% if cerpacs %}
+                    <table class="table table-striped custom-table datatable">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Serial No</th>
+                                <th class="text-nowrap">Status</th>
+                                <th>Days Left</th>
+                                <th class="text-right no-sort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cerpac in cerpacs %}
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="#" class="avatar"><img alt="" src="static/img/profiles/avatar-02.jpg"></a>
+                                        <a href="#"> {{  cerpac.employee.first_name }}  {{  cerpac.employee.last_name }} <span>passport Number</span></a>
+                                    </h2>
+                                </td>
+                                
+                                
+                                <td>{{ cerpac.cerpac_serial_no }}</td>
+                                <td>{{ cerpac.renew_status }}</td>
+                                <td><a href="" class="btn btn-white btn-sm btn-rounded "  aria-expanded="false">{{ cerpac.remaining_days }} Days </a>  </td>       
+                                <td><a href="{{ url_for('admin.show_cerpac', id=cerpac.id) }}" class=" btn btn-success  btn-rounded" >view</a> </td>
+                                <td><a href="{{ url_for('admin.edit_cerpac', id=cerpac.id) }}" class="btn btn-warning btn-rounded ">edit</a> <td>
+                                <td><a href="{{ url_for('admin.delete_cerpac', id=cerpac.id) }}" class=" btn btn-danger  btn-rounded" >Delete</a> </td>
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                                
+                        </tbody>
+                    </table>
+
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Page Content -->
+    
+    <!-- Add Employee Modal -->
+   
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

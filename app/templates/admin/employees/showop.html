@@ -1,0 +1,229 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Cerpac{% endblock %}
+{% block body %}
+
+<div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Profile</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="{{url_for('admin.list_expatriates')}}">Expatriates</a></li>
+									<li class="breadcrumb-item active">{{title}}</li>
+									{{ utils.flashed_messages() }}
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="card mb-0">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="profile-view">
+										<div class="profile-img-wrap">
+											<div class="profile-img">
+												<a href="">
+													<img src="/static/passports/{{employee.passport_pic }}" alt="">
+                                                    
+												</a>
+											</div>
+										</div>
+										<div class="profile-basic">
+											<div class="row">
+												<div class="col-md-5">
+													<div class="profile-info-left">
+														<h3 class="user-name m-t-0">{{ employee.company.company_name }}</h3>
+														<h5 class="company-role m-t-0 mb-0">{{(employee.label).title()}}</h5>
+														<small class="text-muted">{{ employee.laps.runner_name }}</small>
+														<div class="staff-id">{{employee.expat_id}}</div>
+														<div class="staff-msg"><a href="#" class="btn btn-custom">Quota Details</a></div>
+													</div>
+												</div>
+												<div class="col-md-7">
+													<ul class="personal-info">
+														<li>
+															<span class="title">Phone:</span>
+															<span class="text"><a href="">{{ employee.phone_number }}</a></span>
+														</li>
+														<li>
+															<span class="title">Email:</span>
+															<span class="text"><a href="">{{ employee.email }}</a></span>
+														</li>
+														<li>
+															<span class="title">Birthday:</span>
+															<span class="text">{{ employee.birthday.strftime('%d, %b, %y') }}</span>
+														</li>
+														<li>
+															<span class="title">Address:</span>
+															<span class="text">{{ employee.city }}, {{ employee.state }} </span>
+														</li>
+														<li>
+															<span class="title">Gender:</span>
+															<span class="text">{{ employee.gender }}</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row"><br> </div>
+				
+					
+                    <!-- the beginning of the dependent forms -->
+					
+					<div class="row staff-grid-row">
+						 {% for employee in employee.dependents %}
+						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+							<div class="profile-widget">
+								<div class="profile-img">
+								<a href="#" class="avatar"><img alt="" src="/static/passports/{{employee.passport_pic }}"></a>
+								</div>
+								<div class="dropdown profile-action">
+									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ url_for('admin.dependent_files', id=employee.id) }}"><i class="fa fa-eye m-r-5"></i> view folder</a>
+									 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_passport{{ employee.id }}"><i class="fa fa-address-card m-r-5"></i> add passport</a>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_cerpac{{ employee.id }}"><i class="fa fa-user-circle-o m-r-5"></i> add cerpac</a>
+                                    <a class="dropdown-item" href="{{ url_for('admin.delete_dependent', id= employee.id) }}" ><i class="fa fa-trash-o m-r-5"></i> delete</a>
+                                </div>
+								</div>
+								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="#">{{  employee.name}} </a></h4>
+								<h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="#">{{ employee.email }} </a> </h5>
+								<div class="small text-muted">{{ employee.relationship}}</div>
+								<a href="{{ url_for('admin.edit_employee', id=employee.id) }}" class="btn btn-white btn-sm m-t-10">edit</a>
+								<a href="{{ url_for('admin.show_employee', id=employee.id) }}" class="btn btn-white btn-sm m-t-10">View Profile</a>
+							</div>
+						</div>
+						{% endfor %}
+						</div>					
+					</div>		
+    			</div>			
+					
+
+<!-- Begining of cerpac Modal Form -->
+{% for employee in employee.dependents %}
+   <div class="modal custom-modal fade" id="add_cerpac{{ employee.id }}"  role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                 <h2 href="#" class="avatar"><img alt="" src="/static/passports/{{employee.passport_pic }} "></h2>
+                    <h3> Add Cerpac  Card</h3>
+                    <p>Please input Cerpac Card Details Correctly </p></div>                 
+                <form method="POST" action="{{ url_for('admin.add_dependent_cerpac', id=employee.id ) }}" enctype="multipart/form-data"> 
+						  <div class="row">
+
+                      	<div class="form-group col-sm-6">
+						<label>Cerpac Number [CNN] <span class="text-danger">*</span></label>
+						<input class="form-control " type="text" name="ccn_number">
+						</div>
+                        <div class="form-group col-sm-6">
+                        <label> Reference Number <span class="text-danger">*</span></label>
+						<input class="form-control " type="text" name="cerpac_serial_no">
+						</div>
+						<div class="form-group col-sm-6">
+						<label>Effective Date <span class="text-danger">*</span></label>
+						<input class="form-control " type="date" name="cerpac_issue_date">
+						</div>
+						<div class="form-group col-sm-6">
+						<label>Expiry Date <span class="text-danger">*</span></label>
+						<input class="form-control " type="date" name="expired_date">
+						</div>
+                        </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-primary submit-btn" type="submit" name="submit" value="Submit">Submit</button>
+                        </div>                        
+                        <div class="col-6">
+                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Decline</a>
+                        </div>
+                    </div>
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Ending of dependent Cerpac Form /-->
+ <!-- Beggining passport Datapage  Modal -->
+{% for employee in employee.dependents  %}
+   <div class="modal custom-modal fade" id="add_passport{{ employee.id }}" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                <h2 href="#" class="avatar"><img alt="" src="/static/passports/{{employee.passport_pic }} "></h2>
+                    <h3>Add Passport  Details </h3>
+                    <p>Please input passport details Correctly </p>
+                </div>       
+                
+                  <form method="POST" action="{{ url_for('admin.add_dependent_passport', id=employee.id ) }}" enctype="multipart/form-data">
+                 
+                 	<div class="row">
+                      	<div class="form-group col-sm-6">
+						<label>Passport Number <span class="text-danger">*</span></label>
+						<input class="form-control " type="text" name="passport_no">
+						</div>
+                        <div class="form-group col-sm-6">
+                        <label> Nationality <span class="text-danger">*</span></label>
+						<input class="form-control " type="text" name="nationality">
+						</div>
+						<div class="form-group col-sm-6">
+						<label>Issue Date <span class="text-danger">*</span></label>
+						<input class="form-control " type="date" name="passport_issue_date">
+						</div>
+						<div class="form-group col-sm-6">
+						<label>Expiry Date <span class="text-danger">*</span></label>
+						<input class="form-control " type="date" name="passport_exp_date">
+						</div>
+                        </div>
+
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-primary submit-btn" type="submit" name="submit" value="Submit">Submit</button>
+                        </div>
+                        
+                        <div class="col-6">
+                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Decline</a>
+                        </div>
+                    </div>
+                    </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<!-- \End of passport  Card-->
+
+
+</div>
+
+
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

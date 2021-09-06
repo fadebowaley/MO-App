@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Register - HRMS Expartie</title>
+
+    <!-- Bootstrap CSS -->
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='img/favicon.png') }}"
+    />
+
+    <!-- Bootstrap CSS -->
+    {% assets "main_styles" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+    {% endassets %}
+    <style>
+      .list-group-item {
+        border: none;
+      }
+    </style>
+  </head>
+  <body class="account-page">
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <div class="account-content">
+        <a
+          href="{{ url_for('home.homepage') }}"
+          class="btn btn-primary apply-btn"
+          >Switch Back</a
+        >
+        <div class="container">
+          <!-- Account Logo -->
+          <div class="account-logo">
+            <a href="/index"
+              ><img
+                src="{{ url_for('static', filename='img/logo2.png') }}"
+                alt="expart Technologies"
+            /></a>
+          </div>
+          <!-- /Account Logo -->
+          {% import "bootstrap/utils.html" as utils %} 
+          {% import "bootstrap/wtf.html" as wtf %}
+          <div class="account-box">
+            <div class="account-wrapper">
+              <h3 class="account-title">Register</h3>
+              <p class="account-subtitle">Access to our Dashboard</p>
+              {{ utils.flashed_messages() }}
+
+              <!-- Account Form -->
+              <form action="" method="post" class="form" role="form">
+                {{ form.csrf_token() }}
+
+                <div class="form-group">
+                  {{ wtf.form_field(form.username, class='form-control',
+                  Placeholder='Username')}}
+                </div>
+
+                <div class="form-group">
+                  {{ wtf.form_field(form.email, class='form-control',
+                  Placeholder='Email Address')}}
+                </div>
+
+                <div class="form-group">
+                  {{ wtf.form_field(form.password, class='form-control',
+                  Placeholder='passwword')}}
+                </div>
+
+                <div class="form-group">
+                  {{ wtf.form_field(form.confirm_password, class='form-control',
+                  Placeholder='confirm passsword')}}
+                </div>
+                <ul class="list-group notification-list">
+                  <li class="list-group-item col-md-8">
+                    {{ tickr }} Administrator
+                    <div class="status-toggle">
+                      <input type="checkbox" id="staff_module" class="check" />
+                      <label for="staff_module" class="checktoggle"></label>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="form-group text-center">
+                  <button class="btn btn-primary account-btn" type="submit">
+                    Register
+                  </button>
+                </div>
+                <div class="account-footer">
+                  <p>
+                    Already have an account?
+                    <a href="{{ url_for('auth.login') }}">Login</a>
+                  </p>
+                </div>
+              </form>
+              <!-- /Account Form -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- jQuery -->
+
+    <script src="static/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <!-- Slimscroll JS -->
+    <script src="static/jquery.slimscroll.min.js"></script>
+    <!-- Custom JS -->
+    <script src="static/app.js"></script>
+  </body>
+</html>

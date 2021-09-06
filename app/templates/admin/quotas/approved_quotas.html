@@ -1,0 +1,131 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+ <!-- Page Wrapper -->
+ <div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ utils.flashed_messages() }}    
+                    <h3 class="page-title">{{title}}</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_quota') }}"class="btn add-btn" ><i class="fa fa-plus"></i> Add Quota</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        
+        
+       
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        {% if quotas %}
+                                        <table class="table table-striped custom-table mb-0 datatable table table-hover mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <th>Reference ID</th>                                                    
+                                                    <th>Date Renewed</th>
+                                                    <th>Date Approved</th>
+                                                    <th class="text-center">New Expiry Date</th>
+                                                    <th class="text-center">Renewal Counts</th>
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                 
+                        {% for quota, renew, approve in quotas %}
+                        
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a href="#" class="avatar"><img alt="" src="/static/logos/{{ quota.company.logo_image }}"></a>
+                                    <a href="#"> {{quota.company.company_name}}</a>
+                                </h2>
+                            </td>
+                            <td>{{ quota.quota_reference}}</td>
+                            <td>{{ renew.date_renewed.strftime('%B %d, %Y') }}</td>
+                            <td>{{ approve.date_approved.strftime('%B %d, %Y') }} </td>
+                            <td class="text-center">
+                             <span class="badge bg-inverse-success">{{ approve.new_expiry_date.strftime('%B %d, %Y') }}</span>
+                               </td>
+                                     
+                                <td class="text-center">
+                                <a href="" class="btn btn-white btn-sm btn-rounded">{{quota.approval_count}}
+                  </a>
+                                   
+                                   
+                                    </td>
+                                 
+                                
+                                                        
+                                <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="{{ url_for('admin.show_quota', id=quota.id) }}" ><i class="fa fa-pencil m-r-5"></i> View</a>
+
+                                        </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- /Page Content -->
+    
+  
+   <!-- Approve Leave Modal -->
+   <div class="modal custom-modal fade" id="approve_leave" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Leave Approve</h3>
+                    <p>Are you sure want to approve for this leave?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="javascript:void(1);" class="btn btn-primary continue-btn">Approve</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Decline</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<!-- /Approve Leave Modal -->
+<!-- /Page Wrapper -->
+ {% endif %}
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+		
+        <!-- Page Wrapper -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ utils.flashed_messages() }}    
+                    <h3 class="page-title">Cerpacs Documents</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="#"class="btn add-btn" ><i class="fa fa-plus"></i> Add Cerpacs</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Leave Statistics -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Score Cards</h6>
+                    <h4>12 / 60</h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Expired Documents</h6>
+                    <h4>8 <span>Today</span></h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Active Documents</h6>
+                    <h4>0 <span>Today</span></h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Grace Period</h6>
+                    <h4>12</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /Leave Statistics -->
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+           <div class="col-sm-4 col-md-4">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee Name</label>
+                </div>
+           </div>
+
+           <div class="col-sm-4 col-md-4">  
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating">
+                <label class="focus-label">Serial Number</label>
+            </div>
+       </div>
+          
+           <div class="col-sm-4 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+           </div>     
+        </div>
+        <!-- /Search Filter -->
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    {% if cerpacs %}
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Serial No</th>
+                                <th>Issue </th>
+                                <th>Expired</th>
+                                <th>Days Left</th>
+                                
+                                <th class="text-center">Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cerpac in cerpacs %}
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="#" class="avatar"><img alt="" src="/static/passports/{{cerpac.employee.passport_pic }} "></a>
+                                        <a href="#"> {{  cerpac.employee.first_name }}  {{  cerpac.employee.last_name }}</a>
+                                    </h2>
+                                </td>
+                                <td>{{ cerpac.cerpac_serial_no }}</td>
+                                <td>{{ cerpac.cerpac_issue_date.strftime('%B %d, %Y') }}</td>
+                                <td>{{ cerpac.expired_date.strftime('%B %d, %Y') }} </td>
+                                
+                                <td><a href="" class="btn btn-white btn-sm btn-rounded ">{{ cerpac.remaining_days }} Days </a>  </td>
+                                
+                                {% if  cerpac.renew_status == 'Active' %}
+                            <td class="text-center">
+                                  <a class="btn btn-white btn-sm btn-rounded " href="#" data-toggle="dropdown" aria-expanded="false">
+                                     <i class="fa fa-dot-circle-o text-success"></i> Document Good! </a>
+                                    </td>
+                                    {%  elif  cerpac.renew_status =="warning" %}
+                                    <td class="text-center">
+                                     <a class="btn btn-warning btn-sm btn-rounded " href="#" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-dot-circle-o text-warning"></i> check cerpac!  </a>  
+                                    </td>
+                                {%  else %}  
+                                <td class="text-center">
+                                    <a class="btn btn-danger btn-sm btn-rounded " href="#" data-toggle="dropdown" aria-expanded="false">
+                                     <i class="fa fa-dot-circle-o text-danger"></i> cerpac expired! </a>
+                                    </td>
+                                 
+                                {% endif %}
+                                
+                                
+                                
+                                    <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{ url_for('admin.show_cerpac', id=cerpac.id) }}" ><i class="fa fa-pencil m-r-5"></i> View</a>
+                                            <a class="dropdown-item" href="{{ url_for('admin.edit_cerpac', id=cerpac.id) }}" ><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="{{ url_for('admin.delete_cerpac', id=cerpac.id) }}" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                         </tbody>
+                    </table>
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Page Content -->
+    </div>
+    
+    {% endblock %}

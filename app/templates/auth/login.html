@@ -1,0 +1,102 @@
+﻿{% import "bootstrap/utils.html" as utils %}
+{% extends "layout.html" %}
+{% block title %}Welcome to brvcase {% endblock %}
+{% block body %}
+
+
+<body class="is-theme-core">
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+    <div class="hero is-app-grey is-fullheight" data-switcher-visible="">
+{% import "bootstrap/utils.html" as utils %}
+       
+        <!-- Hero image -->
+        <div id="main-hero" class="hero-body">
+      
+            <div class="container has-text-centered">
+                <div class="columns is-vcentered">
+                    <div class="column is-6 is-offset-3">
+                        <!-- Login form -->
+                        <div id="login-card" class="animated preFadeInLeft fadeInLeft">
+                            <div class="flex-card clean-login-card">
+                                <h2>{{title}}</h2>
+                                
+                                    <span>    {{ utils.flashed_messages() }} </span>
+                                            
+                                  
+                                <form action="" method="post" class="form" role="form">
+                        
+                             <div class="field">
+                             <div class="control">
+                            <!-- Medium -->
+                            <input class="input is-rounded is-medium" type="email" name="email" placeholder="email address">
+                                 </div>
+                                 </div>
+                             <div class="field">
+                             <div class="control">
+                            <!-- Medium -->
+                            <input class="input is-rounded is-medium" type="password" name="password" placeholder="password">
+                                 </div>
+                                 </div>
+                         
+                  
+                                    <div class="field remember-wrap is-grouped pt-20">
+                                        <div class="control">
+                                            <label class="slide-toggle">
+                                                <input type="checkbox" name="rem">
+                                                <span class="toggler">
+                                                    <span class="active">
+                                                        <i data-feather="check"></i>
+                                                    </span>
+                                                <span class="inactive">
+                                                        <i data-feather="circle"></i>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="control">
+                                            <span>remember</span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mt-20">
+                                        <button class="button button-cta     btn-align is-fullwidth
+                            primary-btn
+                            btn-outlined
+                            is-bold
+                            rounded
+                            raised
+                            no-lh
+                          "
+                                        type="submit"
+                                        name="submit">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <p class="has-text-centered pt-20 pb-20">
+                                <a id="show-recover" class="no-account is-primary" href="{{ url_for('auth.reset_password_request') }}"><i class="fa fa-exclamation-triangle color-red"></i> Lost your password? Please Click here</a>
+
+                            </p>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        
+    <!-- /Side navigation -->
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
+    
+    </div> <!-- Bulchat Button -->
+    <div id="bulchat" class="open">
+        <div class="chat-button open g-item"></div>
+    
+         
+        </div>
+    </div>
+    {% endblock %}

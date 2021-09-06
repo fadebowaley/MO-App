@@ -1,0 +1,156 @@
+
+{% extends "base.html" %}
+{% block title %}Employee{% endblock %}
+{% block body %}
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<!--<style>
+    label{
+      display: None;
+    }
+    </style> -->
+    {% import "bootstrap/utils.html" as utils %}
+    {% import "bootstrap/wtf.html" as wtf %}
+
+
+
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+            
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title">Employee Credentials</h3>
+                            <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Official</a></li>
+                        <li class="breadcrumb-item active">Admin Only Form</li>
+                    </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+                {{ utils.flashed_messages() }}
+                <form action="" method="post" enctype="multipart/form-data" class="form" role="form" >
+                    <div class="row">
+                      
+                       <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Company Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" value="Dreamguy's Technologies">
+                            </div>
+                        </div>-->
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.first_name, class='form-control')}}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.last_name, class='form-control' )}}
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.email, class='form-control' )}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            {{ wtf.form_field(form.employee_id, class='form-control' )}}  
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            {{ wtf.form_field(form.gender, class='form-control' )}}  
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            {{ wtf.form_field(form.birthday, class='form-control' )}}   
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            {{ wtf.form_field(form.date_of_employment, class='form-control' )}}
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.phone_number, class='form-control')}}
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.address, class='form-control')}}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.city, class='form-control')}}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.state, class='form-control')}}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                {{ wtf.form_field(form.country, class='form-control')}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                --country form--
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                               ----laps-----
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                -----role -----
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Edit Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+    
+</div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+{% endblock %}

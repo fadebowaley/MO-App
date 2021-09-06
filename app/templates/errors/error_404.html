@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title> Bulkit :: Error 404</title>
+    <link rel="icon" type="image/png" href="assets\img\favicon.png">
+
+    <!--Core CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">    
+    <link href="{{ url_for('static', filename='css/core.css') }}" rel="stylesheet">  
+
+</head>
+
+<body class="is-theme-core">
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+    <!-- Hero and nav -->
+    <div class="hero is-relative is-fullheight">
+        <!-- Navbar -->
+        <nav class="navbar navbar-wrapper is-transparent is-static">
+            <div class="container">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="index.htm">
+                        <img src="assets\img\logos\bulkit-purple.svg" alt="">
+                    </a>
+
+                    <!-- Sidebar Trigger -->
+                    <a id="navigation-trigger" class="navbar-item hamburger-btn" href="javascript:void(0);">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                        </span>
+                        </span>
+                    </a>
+                    <!-- Responsive toggle -->
+                    <div class="custom-burger" data-target="">
+                        <a id="" class="responsive-btn" href="javascript:void(0);">
+                            <span class="menu-toggle">
+                                <span class="icon-box-toggle">
+                                    <span class="rotate">
+                                        <i class="icon-line-top"></i>
+                                        <i class="icon-line-center"></i>
+                                        <i class="icon-line-bottom"></i>
+                                    </span>
+                            </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Responsive toggle -->
+                </div>
+
+                <!-- Navbar menu -->
+                <div class="navbar-menu">
+                    <!-- Navbar Start -->
+                    <div class="navbar-start">
+                        <!-- Dropdown -->
+                        <div class="navbar-item has-dropdown is-hoverable is-hidden-mobile">
+                          
+                        </div>
+                        <!-- Mobile dropdown -->
+                        <div class="mobile-drop is-hidden-desktop">
+                            <div class="mobile-drop-trigger">
+                                Demos <i class="material-icons">keyboard_arrow_right</i>
+                            </div>
+                            
+                        </div>
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" href="#" target="_blank">
+                            Docs
+                        </a>
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" href="#" target="_blank">
+                            Help
+                        </a>
+                    </div>
+
+                    <!-- Navbar end -->
+      
+                </div>
+            </div>
+        </nav>
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <!-- Error Wrapper -->
+                    <div class="column error-wrap error-centered has-text-centered">
+                        <div class="bg-404">404</div>
+                        <img src="{{ url_for('static', filename='img/graphics/compositions/error-2-core.svg') }}" data-base-url="assets/img/graphics/compositions/error-1" data-extension=".svg" alt="">
+
+                        
+                        <div class="error-caption">
+                            <h2>Oops, We couldn't find that page.</h2>
+                            <p>Please try again or contact the website administrator to get some help.</p>
+                            <div class="button-wrap">
+                                <a href="{{ url_for('home.admin_dashboard')  }}" class="button button-cta btn-outlined is-bold btn-align primary-btn rounded raised">
+                                    Back to Homepage
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- Bulchat Button -->
+    <div id="bulchat" class="open">
+        <div class="chat-button open g-item"></div>
+ 
+    <script src="{{ url_for('static', filename='js/app_home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core_home.js') }}"></script>
+</body>
+
+</html>

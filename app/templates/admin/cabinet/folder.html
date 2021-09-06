@@ -1,0 +1,240 @@
+{% import "bootstrap/utils.html" as utils %} {% extends "base.html" %} {% block
+title %}Home{% endblock %} {% block body %}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <!-- Page Content -->
+  {{ utils.flashed_messages() }}
+
+  <div class="content container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="file-wrap">
+          <div class="file-sidebar">
+            <div class="file-header justify-content-center">
+              <span>Folder Manager</span>
+              <a href="javascript:void(0);" class="file-side-close"
+                ><i class="fa fa-times"></i
+              ></a>
+            </div>
+            <form class="file-search">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <i class="fa fa-search"></i>
+                </div>
+                <input type="text" class="form-control" placeholder="Search" />
+              </div>
+            </form>
+
+            <div class="file-pro-list">
+              <div class="file-scroll">
+                <ul class="file-menu">
+                  <li class="active">
+                    <a href="{{url_for('admin.list_folders')}}"><strong>All FOLDERS</strong></a>
+                  </li>
+                  {% for folder in categories %}
+                  <li>
+                    <a href="{{url_for('admin.list_folders_categories', name = folder.categories)}}">{{ folder.categories }}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="file-cont-wrap">
+            <div class="file-cont-inner">
+              <div class="file-cont-header">
+                <div class="file-options">
+                  <a
+                    href="javascript:void(0)"
+                    id="file_sidebar_toggle"
+                    class="file-sidebar-toggle"
+                  >
+                    <i class="fa fa-bars"></i>
+                  </a>
+                </div>
+                <span>Folder & File Manager</span>
+
+                <div class="card-file">
+                  <a
+                    href="{{ url_for('admin.create_folder') }}"
+                    class="btn add-btn"
+                    ><i class="fa fa-plus"></i> new folder</a
+                  >
+                </div>
+              </div>
+              <div class="file-content">
+                <form class="file-search">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <i class="fa fa-search"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search"
+                    />
+                  </div>
+                </form>
+
+               {% if folders %}
+                <div class="file-body">
+                  <div class="file-content-inner">
+                    <h4>Recent Folders</h4>
+                    <div class="row row-sm">
+                      {% for folder in folders %}
+                      <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                        <div class="card card-file">
+                          <div class="dropdown-file">
+                            <a 
+                              href=""
+                              class="dropdown-link"
+                              data-toggle="dropdown"
+                              ><i class="fa fa-ellipsis-v"></i
+                            ></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a
+                                href="{{ url_for('admin.save_file', id=folder.id) }}"
+                                class="dropdown-item"
+                                >Add Files</a
+                              >
+                              <a
+                                href="{{ url_for('admin.edit_folder', id=folder.id) }}"
+                                class="dropdown-item"
+                                >Edit Folder</a
+                              >
+                              <a
+                                href="{{ url_for('admin.delete_folder', id=folder.id) }}"
+                                class="dropdown-item"
+                                >Delete Folder</a
+                              >
+                            </div>
+                          </div>
+                          <div class="card-file-thumb">
+                            <a style="color: #31dfc2;"
+                              href="{{ url_for('admin.list_files', folder_id=folder.id) }}"
+                              ><i class="fa fa-folder-open"></i
+                            ></a>
+                          </div>
+                          <div class="card-body">
+                            <h6>
+                              <a style="text-decoration:none;"
+                                href="{{ url_for('admin.list_files', folder_id=folder.id) }}"
+                                >{{ folder.folder_name }}</a
+                              >
+                            </h6>
+
+                            {% if folder.folder_size == 'Empty Folder' %}
+                            <span class="badge bg-inverse-danger"
+                              >{{folder.folder_size}}</span
+                            >
+                            {% else %}
+                            <span class="badge bg-inverse-success"
+                              >{{folder.folder_size}}</span
+                            >
+                            {% endif %}
+                          </div>
+                          <div class="card-footer">
+                            <span class="d-none d-sm-inline"
+                              >Date created: </span
+                            >{{ folder.date_created }}
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Content -->
+      {% else %}
+    </div>
+    <!-- /Page Wrapper -->
+    {% endif %}
+               {% if cat %}
+                <div class="file-body">
+                  <div class="file-content-inner">
+                    <h4>Recent Folders</h4>
+                    <div class="row row-sm">
+                      {% for folder in cat %}
+                      <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                        <div class="card card-file">
+                          <div class="dropdown-file">
+                            <a 
+                              href=""
+                              class="dropdown-link"
+                              data-toggle="dropdown"
+                              ><i class="fa fa-ellipsis-v"></i
+                            ></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <a
+                                href="{{ url_for('admin.save_file', id=folder.id) }}"
+                                class="dropdown-item"
+                                >Add Files</a
+                              >
+                              <a
+                                href="{{ url_for('admin.edit_folder', id=folder.id) }}"
+                                class="dropdown-item"
+                                >Edit Folder</a
+                              >
+                              <a
+                                href="{{ url_for('admin.delete_folder', id=folder.id) }}"
+                                class="dropdown-item"
+                                >Delete Folder</a
+                              >
+                            </div>
+                          </div>
+                          <div class="card-file-thumb">
+                            <a
+                              href="{{ url_for('admin.list_files', folder_id=folder.id) }}"
+                              ><i class="fa fa-folder-open"></i
+                            ></a>
+                          </div>
+                          <div class="card-body">
+                            <h6>
+                              <a
+                                href="{{ url_for('admin.list_files', folder_id=folder.id) }}"
+                                >{{ folder.folder_name }}</a
+                              >
+                            </h6>
+
+                            {% if folder.folder_size == 'Empty Folder' %}
+                            <span class="badge bg-inverse-danger"
+                              >{{folder.folder_size}}</span
+                            >
+                            {% else %}
+                            <span class="badge bg-inverse-success"
+                              >{{folder.folder_size}}</span
+                            >
+                            {% endif %}
+                          </div>
+                          <div class="card-footer">
+                            <span class="d-none d-sm-inline"
+                              >Date created: </span
+                            >{{ folder.date_created }}
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Content -->
+      {% else %}
+    </div>
+    <!-- /Page Wrapper -->
+    {% endif %}
+  </div>
+  <!-- /Main Wrapper -->
+  {% endblock %}
+</div>

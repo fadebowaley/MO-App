@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title> brvcase </title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    <!--Core CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet">
+    
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">    
+    <link href="{{ url_for('static', filename='css/core.css') }}" rel="stylesheet">    
+
+</head>
+<!-- nav bar-->
+<body class="is-theme-core">
+  <!--<div class="pageloader"></div>
+    <div class="infraloader is-active"></div>  -->
+    <div class="hero product-hero is-fullheight is-relative">
+        <nav class="navbar navbar-wrapper navbar-default navbar-fade is-transparent">
+            <div class="container">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="{{url_for('home.homepage')}}">
+                        <img class="#" src="{{ url_for('static', filename='img/logos/logo/bulkit-core.svg') }}" alt="">
+                    </a>
+                    <!-- Sidebar Trigger -->
+                    <a id="navigation-trigger" class="navbar-item hamburger-btn" href="javascript:void(0);">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                        </span>
+                        </span>
+                    </a>
+
+                    <!-- Responsive toggle -->
+                    <div class="custom-burger" data-target="">
+                        <a id="" class="responsive-btn" href="javascript:void(0);">
+                            <span class="menu-toggle">
+                                <span class="icon-box-toggle">
+                                    <span class="rotate">
+                                        <i class="icon-line-top"></i>
+                                        <i class="icon-line-center"></i>
+                                        <i class="icon-line-bottom"></i>
+                                    </span>
+                            </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Responsive toggle -->
+                </div>
+                <!-- Navbar menu -->
+                <div class="navbar-menu">
+                    <!-- Navbar Start -->
+                    <div class="navbar-start">
+                        <!-- Navbar item -->
+                        {% if not current_user.is_authenticated %}
+                        <a class="navbar-item is-slide" href="{{ url_for('home.features') }}">
+                            Features
+                        </a>
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" href="{{ url_for('home.pricing') }}">
+                            Pricing
+                        </a>
+                        <!-- Navbar item -->           
+                        <a class="navbar-item is-slide" href="{{ url_for('auth.register') }}">
+                            Sign Up
+                        </a>                        
+                        <!-- Navbar item -->
+                        {% else %}
+
+                        {% if current_user.active == True%}
+                        <a class="navbar-item is-slide" href="{{ url_for('home.admin_dashboard') }}">
+                            Dashboard
+                        </a>                    
+                        {%else%}
+                        {% endif %}
+                        <a class="navbar-item is-slide" href="#">
+                            Documentation
+                        </a>
+                        <a class="navbar-item is-slide" href="#">
+                            Help- articles
+                        </a>
+                        {% endif %}
+
+                    {% if current_user.active == False and current_user.is_authenticated and current_user.role_id != None and current_user.chamber_id != None  %}
+                           <a class="navbar-item is-slide" href="{{ url_for('auth.welcome_2fa') }}">
+                           <span class="tag is-danger">  click here to activate your account </span>
+                        </a>
+
+                    {% elif current_user.active == False and current_user.is_authenticated and current_user.role_id == None and current_user.chamber_id == None  %}
+                           <a class="navbar-item is-slide" href="{{ url_for('auth.welcome') }}">
+                           <span class="tag is-info">  click here to set-up your account </span>
+                        </a>
+                    {%else%}
+                    
+                    {% endif %}
+                    </div>
+                    <!-- Navbar end -->
+                    <div class="navbar-end">
+                        <!-- Signup button -->
+                        <div class="navbar-item">
+                        {% if not current_user.is_authenticated %}
+                            <a id="#signup-btn" href="{{url_for('auth.login')}}" class="button button-cta btn-outlined is-bold btn-align primary-btn rounded raised">
+                            Login
+                            </a>
+                            {% else %}
+                            <a id="#signup-btn" href="{{url_for('auth.logout')}}" class="button button-cta btn-outlined is-bold btn-align primary-btn rounded raised">
+                                Logout
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+<!-- nav bar-->
+
+<!-- Content Starts -->
+{% block body %} 
+
+{% endblock %}
+<!-- Side footer -->
+    <footer class="footer footer-light-left">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-6">
+                    <div class="mb-20">                        
+                         <img class="small-footer-logo" src="{{ url_for('static', filename='img/logos/bulkit-logo-g.png') }}" alt="">
+                    </div>
+                    <div>
+                        <span class="moto">Designed and coded with  <i class="fa fa-heart color-red"></i> by brvcase.</span>
+                        <nav class="level is-mobile mt-20">
+                            <div class="level-left level-social">
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-facebook"></i></span>
+                                </a>
+                                <a href="https://www.twitter.com/brvcase" class="level-item">
+                                    <span class="icon"><i class="fa fa-twitter"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-linkedin"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-dribbble"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-github"></i></span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-nav-right">
+                        <a class="footer-nav-link" href="{{ url_for('home.homepage') }}">Home</a>
+                        <a class="footer-nav-link" href="{{ url_for('home.features') }}">Features</a>
+                        <a class="footer-nav-link" href="{{ url_for('home.pricing') }}">Pricing</a>
+                        <a class="footer-nav-link" href="{{url_for('home.policy')}}">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Side footer -->
+
+<!-- /Content Starts -->
+ 
+    <script src="{{ url_for('static', filename='js/app_home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core_home.js') }}"></script>
+
+</body>
+</html>

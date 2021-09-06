@@ -1,0 +1,229 @@
+﻿
+{% import "bootstrap/utils.html" as utils %}
+{% extends "layout.html" %}
+{% block title %}Welcome to brvcase {% endblock %}
+{% block body %}
+
+<body class="is-theme-core">
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+    <!-- Hero (Parallax) and nav -->
+    <div class="hero is-fullheight is-app-grey mapbox-hero">
+
+        <nav class="navbar navbar-wrapper is-cloned">
+            <div class="container">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="index.htm">
+                        <img class="switcher-logo" src="assets\img\logos\logo\bulkit-core.svg" alt="">
+                    </a>
+
+                    <!-- Sidebar Trigger -->
+                    <a class="navbar-item hamburger-btn navigation-trigger" href="javascript:void(0);">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                        </span>
+                        </span>
+                    </a>
+
+                    <!-- Responsive toggle -->
+                    <div class="custom-burger" data-target="is-cloned">
+                        <a class="responsive-btn" href="javascript:void(0);">
+                            <span class="menu-toggle">
+                                <span class="icon-box-toggle">
+                                    <span class="rotate">
+                                        <i class="icon-line-top"></i>
+                                        <i class="icon-line-center"></i>
+                                        <i class="icon-line-bottom"></i>
+                                    </span>
+                            </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Responsive toggle -->
+                </div>
+
+                <!-- Navbar menu -->
+                <div id="is-cloned" class="navbar-menu">
+                    <!-- Navbar Start -->
+                    <div class="navbar-start">
+                        <!-- Dropdown -->
+                        <div class="navbar-item has-dropdown is-hoverable is-mega">
+                            <div class="navbar-link">
+                                Menu
+                            </div>
+                            <div class="navbar-dropdown is-megamenu animated prefadeInUp fadeInUp" data-style="width: 18rem;">
+                                <div class="mega-inner">
+                                    <div class="container">
+                                        <div class="columns">
+                                            <div class="column">
+                                                <h2 class="title is-6 is-mega-menu-title">Landing Kits</h2>
+                                                <div class="scrollable-container" data-simplebar="">
+                                                
+ </div>
+ </div>
+
+                                          
+                                        </div>
+                                    </div>
+
+                                    <hr class="navbar-divider">
+                                    <div class="navbar-item is-footer is-hidden-mobile">
+                                        <div class="navbar-content">
+                                            <div class="level is-mobile">
+                                                <div class="level-left">
+                                                    <div class="level-item">
+                                                        <strong>Follow us</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="level-right">
+                                                    <div class="level-item">
+                                                        <a class="social-link" href="#"><i class="fa fa-twitter"></i></a>
+                                                        <a class="social-link" href="#"><i class="fa fa-facebook"></i></a>
+                                                        <a class="social-link" href="#"><i class="fa fa-behance"></i></a>
+                                                        <a class="social-link" href="#"><i class="fa fa-github"></i></a>
+                                                        <a class="social-link" href="#"><i class="fa fa-tumblr"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navbar item -->
+                        
+
+                        <!-- Navbar item -->
+                        
+                    </div>
+
+                    <!-- Navbar end -->
+                    <div class="navbar-end">
+                        <!-- Navbar item -->
+                        <!-- Navbar item -->
+                        
+                        <!-- Signup button -->
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-wrapper navbar-light is-transparent is-static">
+            <div class="container">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="index.htm">
+                        <img class="switcher-logo" src="assets\img\logos\bulkit-white.svg" alt="">
+                    </a>
+
+                    <!-- Sidebar Trigger -->
+                 
+                    <!-- Responsive toggle -->
+                    <div class="custom-burger" data-target="is-static">
+                        <a class="responsive-btn" href="javascript:void(0);">
+                            <span class="menu-toggle">
+                                <span class="icon-box-toggle">
+                                    <span class="rotate">
+                                        <i class="icon-line-top"></i>
+                                        <i class="icon-line-center"></i>
+                                        <i class="icon-line-bottom"></i>
+                                    </span>
+                            </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Responsive toggle -->
+                </div>
+
+                <!-- Navbar menu -->
+            
+                    <!-- Navbar Start -->
+                    <div class="navbar-start">
+
+                       
+                    <!-- Navbar end -->
+                    <div class="navbar-end">
+
+                        
+                        <!-- Signup button -->
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="mapbox-3" class="hero-map"></div>
+
+        <!-- Hero image -->
+        <div id="main-hero" class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-vcentered">
+                    <div class="column is-6 is-offset-6 has-text-centered is-subheader-caption">
+                        <div class="contact-page-form flex-card">
+
+                            <h3>Contact Us</h3>
+                            <p>Use the form below to send us a message.</p>
+
+                            <div class="columns is-multiline">
+                                <div class="column is-12">
+                                    <div class="field">
+                                        <label>Full Name</label>
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input is-medium" placeholder="Your name">
+                                            <span class="icon is-left is-small">
+                                                <i class="sl sl-icon-user"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-12">
+
+                                    <div class="field">
+                                        <label>Email Address</label>
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input is-medium" placeholder="Your email">
+                                            <span class="icon is-left is-small">
+                                                <i class="sl sl-icon-envelope-open"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-12">
+                                    <div class="field">
+                                        <label>Message</label>
+                                        <div class="control">
+                                            <textarea class="textarea" rows="4" placeholder="Write your message"></textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-12">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="button" class="button button-cta primary-btn no-lh is-bold raised is-fullwidth">Send
+                                                Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Side navigation -->
+
+
+
+
+{% endblock %}

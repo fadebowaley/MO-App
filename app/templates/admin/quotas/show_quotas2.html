@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Cerpac{% endblock %}
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Employee Profile  </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url_for('admin.list_quotas') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin Only</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title mb-0">Employee Data</h4> 
+                    </div>
+                 
+                    <div class="card-body">
+                        <thead>
+                            <tr>
+                                <th>Company Name </th>
+                                <th>No of Position</th>
+                                <th>Effective date </th>
+                                <th>reference </th>
+                                <th>expiry date </th>
+                                <th>company address </th>
+                                <th>company email </th>
+                                <th>company contact </th>
+                                <th class="text-right no-sort">Action</th>
+                            </tr>
+                        </thead>
+                      
+
+                        <ul>
+                           
+                           <li><a href="/static/quotas/{{quota.quota_upload}}" alt="">Download File</a></li>
+                           
+                           <li><img src="/static/logos/{{quota.company.logo_image }}" alt=""></li>
+                            <li>{{ quota.company.company_name }} </li>
+                            <li>{{ quota.no_of_positions }} </li>
+                            <li>{{ quota.effective_date.strftime('%B %d, %Y') }}  </li>
+                            <li>{{ quota.quota_reference }} </li> 
+                            <li>{{ quota.quota_exp_date.strftime('%B %d, %Y') }} </li>
+                            <li>{{ quota.quota_exp_date.strftime('%B %d, %Y') }} </li>
+                            <li>{{ quota.company.company_address }} </li>
+                            <li> {{ quota.company.company_email }}  </li>
+                            <li> {{ quota.company.contact_number }} </li>
+                            <li> {{ quota.token_serial.serial_no }} </li>
+                            <li> {{quota.renew_status }}  renew status </li>
+                            <li> {{quota.process_status }} process status</li>
+                            <li> {{quota.approval_status }} approval status</li>
+                         
+                            <p> list of no_of_positions</p>
+                            <label>---------------- new positions56------------------</label>
+                            {% for lap in quota.token_serial.laps %}
+                            <li>{{ lap.id}} {{ lap.runner_name }} </li>
+
+                        {% endfor%}
+
+                        <p>list of no_of_position</p>
+                        
+   
+                        
+                                                    
+                        
+                        </ul>
+                         <iframe src = "/static/quotas/{{quota.quota_upload}}" width = "1000" height = "1200"></iframe>
+
+
+                            
+
+                       
+                    
+                        
+                    </div>
+
+                </div>
+            
+
+            </div>
+        </div>
+    
+    </div>			
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

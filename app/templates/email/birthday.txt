@@ -1,0 +1,7 @@
+<p>Dear {{ employee.first_name }} {{ employee.last_name}} </p>
+<p>happy Birthday to you</p>
+<p>We know today is special to you and we celebrate you </p>
+
+<p>Take a Bottle of Coke</p>
+<p>Sincerely,</p>
+<p>The Microblog Team</p>   

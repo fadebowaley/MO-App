@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+              <title>Register - HRMS admin template</title>
+		
+		<!-- Bootstrap CSS -->
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.png">
+      
+
+                <!-- Bootstrap CSS -->
+                {% assets "main_styles"  %}
+                <link rel="stylesheet" href="{{ ASSET_URL }}"/>
+                {% endassets   %}	
+		
+	
+    </head>
+    <body class="account-page">
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+			<div class="account-content">
+				<a  href="{{ url_for('home.homepage') }}" class="btn btn-primary apply-btn">Switch Back</a>
+				<div class="container">
+				
+					<!-- Account Logo -->
+					<div class="account-logo">
+						<a href="/index"><img src="static/img/logo2.png" alt="expart Technologies"></a>
+					</div>
+					<!-- /Account Logo -->
+					{% import "bootstrap/utils.html" as utils %}
+					{% import "bootstrap/wtf.html" as wtf %}
+					<div class="account-box">
+						<div class="account-wrapper">
+							<h3 class="account-title">Register</h3>
+							<p class="account-subtitle">Add a new Employee </p>
+							{{ utils.flashed_messages() }}
+
+							<!-- Account Form -->
+					<form action="" method="post" class="form" role="form">
+                {{ form.csrf_token() }}
+                <div class="form-group">
+                  {{ wtf.form_field(form.first_name, class='form-control', Placeholder='First Name')}}
+                  </div>
+                  <div class="form-group">
+                    {{ wtf.form_field(form.last_name, class='form-control', Placeholder='Last Name')}}
+                    </div>
+
+								<div class="form-group">
+								{{ wtf.form_field(form.phone_number, class='form-control', Placeholder='Phone Number')}}
+                </div>
+                
+                <div class="form-group">
+                  {{ wtf.form_field(form.email, class='form-control', Placeholder='Email Address')}}
+                  </div>
+                
+							
+								<div class="form-group">
+									{{ wtf.form_field(form.gender, class='form-control', Placeholder='gender')}}
+									</div>
+
+								<div class="form-group">
+										{{ wtf.form_field(form.address, class='form-control', Placeholder='Residential Address')}}
+										</div>
+
+								<div class="form-group">
+											{{ wtf.form_field(form.birthday, class='form-control', Placeholder='your Birthday')}}
+											</div>
+
+								<div class="form-group">
+												{{ wtf.form_field(form.date_of_employment, class='form-control', Placeholder='Date Joined')}}
+												</div>
+
+																
+								<div class="form-group text-center">
+									<button class="btn btn-primary account-btn" type="submit">Register</button>
+								</div>
+								<div class="account-footer">
+									<p>Already have an account? <a href="{{ url_for('auth.login') }}">Login</a></p>
+								</div>
+							</form>
+							<!-- /Account Form -->
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        
+<script src="static/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap Core JS -->
+<script src="static/popper.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
+<!-- Slimscroll JS -->
+<script src="static/jquery.slimscroll.min.js"></script>
+<!-- Custom JS -->
+<script src="static/app.js"></script>
+		
+    </body>
+</html>

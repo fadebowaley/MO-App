@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Data Tables - HRMS admin template</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ <style>
+ .list-unstyled{
+   padding-left:0;
+   list-style: none;
+ }
+ .invoice-details{
+   text-align:right;
+ }
+ h3, .h3{
+   font-size: 1.5resm;
+ }
+  </style>
+  </head>
+  <body>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Page Wrapper -->
+
+
+      <!-- Page Wrapper -->
+            <div class="page-wrapper"			
+				<!-- Page Content -->
+                <div class="content container-fluid">				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row align-items-center">
+					
+
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-6 m-b-20">
+											<img src="#" class="inv-logo" alt="">
+				 							<ul class="list-unstyled">
+												<li>{{ recipient }}</li>
+												<li>{{ addresss }}</li>
+												<li>{{ city }}  - {{ state }}</li>
+												<li>GST No: 00978658</li>
+											</ul>
+										</div>
+										<div class="col-sm-6 m-b-20">
+											<div class="invoice-details">
+												<h3 class="text-uppercase">QUOTA #QTA-0001</h3>
+												<ul class="list-unstyled">
+													<li>Date Generated: <span>{{current_report_date}}</span></li>
+													<li>Due date: <span>not now</span></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									
+									<div class="table-responsive">
+										<table class="table table-striped table-hover">
+											<thead>
+												<tr>
+													<th>S/N</th>
+													<th>NAME</th>
+													<th class="d-none d-sm-table-cell">COMPANY</th>
+													<th>POSITION</th>
+													<th>QUOTA-ID</th>
+													<th>CERPAC NO</th>
+													<th>PASSPORT NO</th>
+													<th>VISA-ID</th>
+													<th class="text-right">TOTAL</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>Android Application</td>
+													<td>Lorem elit</td>
+													<td>Lorem elit</td>
+													<td>Lorem elit</td>
+													<td>Lorem elit</td>
+													<td>Lorem elit</td>
+													<td>Lorem elit</td>
+													<td class="text-right">Lorem elit</td>
+												</tr>
+		
+										
+											</tbody>
+										</table>
+									</div>
+							
+										<div class="invoice-info">
+											<h5>Other information</h5>
+											<p class="text-muted">{{footer }}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+				<!-- /Page Content -->
+				
+            </div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+
+
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <!-- Page Header -->
+
+          <!-- /Page Header -->
+
+      <!-- /Page Wrapper -->
+    </div>
+    <!-- /Main Wrapper -->
+  </body>
+</html>

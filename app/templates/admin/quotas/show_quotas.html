@@ -1,0 +1,223 @@
+{% import "bootstrap/utils.html" as utils %} {% extends "base.html" %} {% block
+title %}Quota Details{% endblock %} {% block body %}
+
+<style>
+  .paint{
+      background-color:#e83e8c
+      border-color:#e83e8c
+  }
+  
+  .list-group-item.active{
+    z-index:2;
+    background-color:red;
+    
+  }
+</style>
+<!-- Page Wrapper -->
+
+<div class="page-wrapper">
+  <!-- Page Content -->
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="page-title">Profile</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{ utils.flashed_messages() }}
+    <!-- /Page Header -->
+    <tbody>
+      <div class="card mb-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="profile-view">
+                <div class="profile-img-wrap">
+                  <div class="profile-img">
+                    <a href="#"
+                      ><img
+                        alt=""
+                        src="/static/logos/{{quota.company.logo_image }}"
+                    /></a>
+                  </div>
+                </div>
+                <div class="profile-basic">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="profile-info-left">
+                        <h3 class="user-name m-t-0 mb-0">
+                          {{ quota.company.company_name }}
+                        </h3>
+                        <h6 class="text-muted">
+                          {{ quota.company.company_name }}
+                        </h6>
+                        <div class="text-muted">
+                          Reference No: {{ quota.quota_reference }}
+                        </div>
+                        <h4 class="text-muted">
+                          Effective Date: {{ quota.effective_date.strftime('%B
+                          %d, %Y') }}
+                        </h4>
+                        <h4 class="text-muted">
+                          Expiry Date: {{ quota.quota_exp_date.strftime('%B %d,
+                          %Y') }}
+                        </h4>
+                        <h4 class="text-muted">
+                          No Of Positions :{{ quota.no_of_positions }}
+                        </h4>
+                        <div class="staff-msg">
+                          <a
+                            class="btn btn-custom"
+                            href="/static/quotas/{{quota.quota_upload}}"
+                            >Download Quota</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                    <!-- this is a test table for all -->
+                    <div class="table-responsive">       
+          <table class="table table-striped custom-table mb-0 datatable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Designation</th>
+                <th>Employee</th>
+                <th>Emp-ID</th>
+             
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for lap in laps %}
+                <tr> 
+                 <td>{{ lap.id }}</td>
+
+
+                                  <td>
+                   <h2 class="table-avatar">
+           
+                    <a href="#" class="avatar"
+                      ><img
+                        alt=""
+                        {% if  lap.employee_name %}
+                        src="/static/passports/{{lap.passport_pic }}"
+                        
+                        {% else %}
+                      src="#"
+                      {% endif %}
+                    /></a>
+                   
+                </td >             
+       
+                <td>{{ lap.runner_name }} </td>
+
+                {% if  lap.employee_name %}
+                <td>                
+                {{ lap.employee_name }}  
+                </td>
+                            
+                <td>{{lap.expat_id}}</td>
+               {% else %}
+               <td>
+                <span class="badge bg-inverse-danger">No employee yet</span>
+                
+                </td>
+               <td>
+                <span class="badge bg-inverse-danger">No employee id</span>
+                
+                </td>
+              {% endif %}
+                <td class="text-right">
+                  <div class="dropdown dropdown-action">
+                    <a href="#" class="action-icon dropdown-toggle"
+                      data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ url_for('admin.assign_quota_position', id=lap.id ) }}" ><i class="fa fa-users m-r-5"></i> assign employee</a>
+                       <a class="dropdown-item" href="{{ url_for('admin.delete_position', id=lap.id ) }}"><i class="fa fa-trash m-r-5"></i>delete positions</a>
+                       <a class="dropdown-item" href="#"><i class="fa fa-user-o m-r-5"></i> add positions</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+               {% endfor%}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+
+
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="pro-edit">
+                  <a
+                    data-target="#profile_info"
+                    data-toggle="modal"
+                    class="edit-icon"
+                    href="#"
+                    ><i class="fa fa-pencil"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card tab-box">
+        <div class="row user-tabs">
+          <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+            <ul class="nav nav-tabs nav-tabs-bottom">
+              <li class="nav-item">
+                <a href="#bank_statutory" data-toggle="tab" class="nav-link"
+                  >view Original Document
+                  <small class="text-danger">(below )</small></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <!-- /Projects Tab -->
+
+        <!-- Bank Statutory Tab -->
+        <div class="" id="">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Uploaded Quota Document</h3>
+              <iframe
+                src="/static/quotas/{{quota.quota_upload}}"
+                width="1000"
+                height="1200"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+  
+
+
+  <!-- /Page Wrapper -->
+</div>
+<!-- /Main Wrapper -->
+
+{% endblock %}

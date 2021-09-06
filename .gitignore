@@ -1,0 +1,8 @@
+venv/
+.flaskenv
+.vscode/
+__pycache__/
+.config.py
+app/static
+migrations/
+files/

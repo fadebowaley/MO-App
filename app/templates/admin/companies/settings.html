@@ -1,0 +1,325 @@
+{% import "bootstrap/utils.html" as utils %} {% extends "base.html" %} {% block
+title %}Home{% endblock %} {% block body %}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="page-title">{{title}}</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">{{title}}</li>
+
+
+          </ul>
+          {{ utils.flashed_messages() }}
+        </div>
+        <div class="view-icons">
+                    <a href="{{ url_for('admin.list_expart_view') }}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                    <a href="{{ url_for('admin.list_expatriates') }}" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
+                </div>
+                
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_company') }}"class="btn add-btn" ><i class="fa fa-plus"></i> Add Clients</a>
+                </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Search Filter -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-striped custom-table table-nowrap mb-0">
+            <thead>
+              <tr>
+                <th>Clients</th>
+                <th>Immigration</th>
+                <th>Real Estate</th>
+                <th>Probate</th>
+                <th>I-Property</th>
+                <th>Self Services</th>
+                <th>Entertainment</th>
+                <th>Notifications</th>
+                <th>Billings</th>
+ 
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            {% for company in companies %}
+            <tbody>
+              <tr>
+                <td>
+                  <h2 class="table-avatar">
+                    <a href="{{ url_for('admin.view_files', company_id=company.id) }}"
+                    class="avatar"
+                      ><img   alt="" src="/static/logos/{{company.logo_image }}">
+                       
+                  </a>
+                    <a href="#"
+                      >{{ company.company_name }} 
+                    </a>
+                  </h2>
+                </td>
+                <td>
+          {% if not current_user.chamber.is_immigration%}
+                  <a
+                    href=""><i class="fa fa-toggle-off fa-2x text-dark"></i>
+                  </a>
+
+          {% else %}
+
+                  {% if company.is_immigration == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_immigration', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_immigration', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+
+            {% endif %}
+                </td>
+
+                <td>
+    {% if not current_user.chamber.is_realestate%}
+                  <a
+                    href=""
+                    ><i class="fa fa-toggle-off fa-2x text-dark"></i>
+                  </a>
+
+          {% else %}
+          
+                  {% if company.is_realestate == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_realestate', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_realestate', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+                </td>
+ {% endif %}
+                <td>
+            {% if not current_user.chamber.is_probate%}
+                  <a
+                    href=""
+                    ><i class="fa fa-toggle-off fa-2x text-dark"></i>
+                  </a>
+
+          {% else %}
+                  {% if company.is_probate == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_probate', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_probate', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+              {% endif %}
+                </td>
+
+
+<td>
+
+{% if not current_user.chamber.is_Iproperty%}
+<a
+href=""
+><i class="fa fa-toggle-off fa-2x text-dark"></i>
+</a>
+
+          {% else %}
+
+                  {% if company.is_Iproperty == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_iproperty', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_iproperty', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+                  {% endif %}
+                </td>
+
+
+                <td>
+                {% if not current_user.chamber.is_services%}
+    <a
+    href=""
+><i class="fa fa-toggle-off fa-2x text-dark"></i>
+</a>
+
+          {% else %}
+                  {% if company.is_services == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_selfservices', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_selfservices', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+                  {% endif %}
+                </td>
+
+                <td>
+                        {% if not current_user.chamber.is_ent%}
+                  <a
+                    href=""
+                    ><i class="fa fa-toggle-off fa-2x text-dark"></i>
+                  </a>
+
+          {% else %}
+                  {% if company.is_ent == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_entertainment', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_entertainment', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+             {% endif %}
+                </td>
+
+          <td>
+            {% if not current_user.chamber.is_notified%}
+            <a
+              href=""
+              ><i class="fa fa-toggle-off fa-2x text-dark"></i>
+            </a>
+
+    {% else %}
+                  {% if company.is_notified == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_notifications', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_notifications', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                  {% endif %}
+                  {% endif %}
+                </td>
+
+                <td>
+                  {% if not current_user.chamber.is_Billings%}
+                  <a
+                    href=""
+                    ><i class="fa fa-toggle-off fa-2x text-dark"></i>
+                  </a>
+
+          {% else %}
+                  {% if company.is_Billings == True %}
+                  <a
+                    href="{{ url_for('admin.set_company_billings', id=company.id) }}"
+                    ><i class="fa fa-toggle-on fa-2x text-success"></i>
+                  </a>
+                  {% else %}
+                  <a
+                    href="{{ url_for('admin.set_company_billings', id=company.id) }}"
+                    ><i class="fa fa-toggle-off fa-2x text-danger"></i>
+                  </a>
+                </td>
+                  {% endif %}
+                  {% endif %}
+              
+                <td class="text-right">
+                  <div class="dropdown dropdown-action">
+                    <a
+                      href="#"
+                      class="action-icon dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-expanded="false"
+                      ><i class="material-icons">more_vert</i></a
+                    >
+                    <div class="dropdown-menu dropdown-menu-right">
+                       <a class="dropdown-item" href="{{ url_for('admin.resigned_company', id=company.id) }}" ><i class="fa fa-trash m-r-5"></i> Retire</a>
+                      <a class="dropdown-item" href="{{ url_for('admin.edit_company', id=company.id) }}" ><i class="fa fa-pencil m-r-5"></i> Edit </a>
+                      <a class="dropdown-item" href="{{ url_for('admin.delete_company', id=company.id) }}" ><i class="fa fa-trash-o m-r-5"></i> Delete </a>
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Content -->
+
+  <!-- Immigration Account Modal -->
+  <div class="modal custom-modal fade" id="immigration" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="form-header">
+            <h3>Expartriates Account ?</h3>
+            <p>Client will be setup for Immigration Account</p>
+          </div>
+          <div></div>
+
+          <div class="modal-btn delete-action">
+            <div class="row">
+              {% for employee in employees %}
+              <div class="col-6">
+                <form
+                  method="POST"
+                  action="{{ url_for('admin.set_client_immigration', id=employee.id) }}"
+                >
+                  {% endfor %}
+                  <input
+                    type="submit"
+                    value="Create Account"
+                    class="btn btn-primary continue-btn"
+                  />
+                </form>
+              </div>
+              <div class="col-6">
+                <a
+                  href="javascript:void(0);"
+                  data-dismiss="modal"
+                  class="btn btn-primary cancel-btn"
+                  >Cancel</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /immigration  Creation Modal-->
+				
+            </div>
+			<!-- Page Wrapper -->
+</div>
+<!-- /Main Wrapper -->
+
+{% endblock %}

@@ -1,0 +1,332 @@
+﻿{% import "bootstrap/utils.html" as utils %}
+{% extends "layout.html" %}
+{% block title %}Welcome to brvcase {% endblock %}
+{% block body %}
+
+
+<body class="is-theme-core">
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+    <div class="hero is-app-grey is-fullheight" data-switcher-visible="">{% import "bootstrap/utils.html" as utils %}
+       {% import "bootstrap/wtf.html" as wtf %}
+      
+      
+ <!-- Double column Step Form -->
+            <div class="columns is-vcentered pt-60">
+                <div class="column is-6 is-offset-3">
+                    <div class="info-block">
+                        <span class="tag is-secondary">brvcase Onboarding </span>
+                        <h4>Welcome {{current_user.username}} ! </h4>
+                        <p class="no-padding">
+                        
+We are delighted to have you onboard !,<br>
+ Quickly do a 2 minutes setup for your company so <br>
+ that you can have a wonderful clients experience
+                             {{ utils.flashed_messages() }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns mt-20 pb-60">
+                <div class="column is-8 is-offset-2">
+                    <!-- Wrapper -->
+                    <div class="steps-wrapper is-double-column">
+                        <!-- Steps Indicators -->
+                        <div class="steps" id="stepsDemo3">
+                            <!-- Indicator -->
+                            <div class="step-item is-active">
+                                <div class="step-marker">1</div>
+                                <div class="step-details">
+                                    <p class="step-title">profile Setup </p>
+                                </div>
+                            </div>
+                    
+                            <!--<div class="step-item">
+                                <div class="step-marker">2</div>
+                                <div class="step-details">
+                                    <p class="step-title">security</p>
+                                </div>
+                            </div>-->
+                            <!-- Indicator -->
+                            <div class="step-item">
+                                <div class="step-marker">2</div>
+                                <div class="step-details">
+                                    <p class="step-title">Finish!</p>
+                                </div>
+                            </div>
+
+                            <!-- Steps content wrapper -->
+                            <div class="steps-content">
+                               
+                                <!-- Step content -->
+                                <!-- Step content -->
+                               
+                        <div class="
+                          step-content
+                          has-text-centered
+                          animated
+                          preFadeInUp
+                          fadeInUp ">
+                                    <div class="columns">
+                                        <!-- Column -->
+                                        <div class="column is-6">
+                                            <!-- Field -->
+                                            <form action="" method="post" class="form" role="form" enctype="multipart/form-data" >
+                                            <div class="field">
+                                                <div class="field-label is-normal">
+                                                    <label class="label">First name</label>
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <input class="input is-medium" name="first_name" id="first_name" type="text" placeholder="First name" autofocus=""   required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Field -->
+                                            <div class="field">
+                                                <div class="field-label is-normal">
+                                                    <label class="label">Last name</label>
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <div class="control has-icon has-icon-right">
+                                                            <input class="input is-medium" 
+                                                            type="text" name="last_name" 
+                                                            id="lastname" placeholder="Last name" 
+                                                            data-validate="require"  required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                           
+                                            <!-- Field -->
+
+                                                <div class="field">
+                                                <div class="field-label is-normal">
+                                                <label class="label">Gender</label>
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="select field">
+                                                    <select  class="input is-medium" name="gender">
+                                                    <option>Select your Gender</option>
+                                                    <option>Female</option>
+                                                    <option>Male</option>
+                                                    <option>Rather not say</option>
+                                                </select>
+                                                </div>
+                                             </div>
+                                             </div>            
+                                            </div>
+                                        </div>
+                                        <!-- Column -->
+                                        <div class="column is-6">
+                                            <!-- Field -->
+                                <div>
+                                <div class="field file-input-wrapper">
+                                <div class="control field-input-wrapper">
+                            <div class="field-input -chosen -chosen -chosen">
+                                <input type="file"
+                                name="image_file" 
+                                id="image_file">
+                                <span class="button btn-align primary-btn raised">Profile Picture</span>
+                                <span class="label" data-js-label=""></span>
+                            </div>
+                        </div>
+                        </div>
+                                            
+                                                <div class="field-label is-normal">
+                                                    <label class="label">Birthday</label>
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <div class="control has-icon has-icon-right">
+                                                            <input class="input is-medium" type="date" name="birthday" id="birthday" placeholder="Birthday" data-validate="require"   required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            <div class="field">
+                                                <div class="field-label is-normal">
+                                                    <label class="label">   Prefered Username</label>
+                                                </div>
+                                                
+                                                <div class="field-body">
+                                              <input class="input is-medium" type="text" name="username" id="username" placeholder="Username" data-validate="require"   required>
+
+
+                                            </div>                                                                
+                                            </div>
+                                            <!-- Field -->                                            
+                                            <!-- Field -->
+                                        </div>
+                                        </div>
+                                   
+                                
+                                <!-- Step content -->
+        <!--<div class=" step-content  has-text-centered  animated  preFadeInUp fadeInUp">
+            <div class="columns offset-2">
+            <div class="columns is-vcentered">
+            <div class="column is-12 is-offset-2">
+                <div  class="info-block">
+                <span class="tag is-secondary">Set password</span>
+                <br>
+                 <div class="field">
+                                                <div class="field-label is-normal">
+                                                    <label class="label">choose password</label>
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <input class="input rounded is-normal"
+                                                                type="password"
+                                                                name="password" 
+                                                                id = "password"
+                                                                required="required"
+                                                                placeholder="Enter password"               
+                                                                required >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+ <script language='javascript' type='text/javascript'>
+                     function check(input) {
+                 if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+                 } else {
+            // input is valid -- reset the error message
+                    input.setCustomValidity('');
+         }
+    }
+</script>
+
+                                               <div class="field">
+                                                <div class="field-label is-normal">
+                                                    <label class="label">confirm password</label>
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <input 
+                                                            class="input rounded is-normal"
+                                                            type="password" 
+                                                            required="required" 
+                                                            id="password_confirm" 
+                                                            oninput="check(this)"
+                                                            name = "confirm_password"
+                                                            placeholder="confirm password"                                                        
+                                                            required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                </div></div>
+                </div>
+                                        <!-- Column -->
+
+            <div class="columns  ">
+            <div class="column is-8 ">
+            <div class="columns is-vcentered">
+        </div>
+                </div></div>
+                </div>
+                            </div>    
+                                <!-- Step content -->
+                                <div class="step-content  has-text-centered animated  preFadeInUp fadeInUp ">
+                                   
+
+                                  <img class="comfirm-image" src="{{ url_for('static', filename='img/graphics/icons/demo/account.svg') }}" width="100" >
+
+                                    <h1 class="title is-5">Click on Complete button to create your new profile on brvcase</h1>
+                                    <div class="control">
+                            <label class="checkbox-wrap is-medium">
+                                <input id="check_confirm"   onchange="valueChanged()" type="checkbox" class="d-checkbox">
+                                <span></span>
+                                Check here to confirm your submission. you may want to read our privacy policy, Terms and Conditions
+                            </label>
+                        </div>
+                                
+                                    
+                                </div>
+                            </div>
+                            <!-- Steps Navigation -->
+                        <div class="steps-actions">
+                        <div class="steps-action">
+                        
+                        <div id="previous">
+                        <a href="#" 
+                        data-nav="previous" 
+                        class="button is-light button-cta is-bold btn-align"
+                        id = "previous"
+                        >Back</a>
+                        </div>
+
+                        <div id="next">
+                        <a href="#" 
+                        data-nav="next" 
+                        class="button secondary-btn  button-cta  is-bold  raised btn-align"
+                        id = "next"
+                        >Next</a>
+                        </div>     
+
+                        <div id="submito">
+                        <button 
+                        type="submit" 
+                        name='submit'
+                        class=" button button-cta  no-lh  btn-align  success-btn   is-bold raised " 
+                        data-dashlane-rid="e387ce2cd0db1dc5" 
+                        data-dashlane-label="true" 
+                        data-form-type="action"
+                        id = "submit">Complete</button>       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        
+    <!-- /Side navigation -->
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
+    
+    </div> <!-- Bulchat Button -->
+    <div id="bulchat" class="open">
+        <div class="chat-button open g-item"></div>
+    
+         
+        </div>
+    </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $("#submit").hide();
+
+    function valueChanged(){
+        //var checkbox = $(this);
+        if($('#check_confirm').is(":checked")) {
+            $("#submit").show();
+            $("#next").hide();
+            $("#previous").hide();
+        } else {
+                $("#submit").hide();
+                $("#next").show();
+                $("#previous").show();
+
+    }
+    }
+
+</script>
+
+    {% endblock %}
+

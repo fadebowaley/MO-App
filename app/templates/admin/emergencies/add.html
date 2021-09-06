@@ -1,0 +1,111 @@
+
+{% extends "base.html" %}
+
+{% block title %}Cerpac{% endblock %}
+{% block body %}
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<!--<style>
+    label{
+      display: None;
+    }
+    </style> -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Emmergency Contact</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Official</a></li>
+                        <li class="breadcrumb-item active">Admin Only Form</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        {% import "bootstrap/utils.html" as utils %}
+		{% import "bootstrap/wtf.html" as wtf %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-0">
+                    
+                                        <!-- The beginning of passport Form-->
+                                        <div class="card-body">
+                                            {{ utils.flashed_messages() }}
+                                             <form action="" method="post" class="form" role="form">
+                                                {{ form.csrf_token() }}
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.employee, class='form-control')}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.relationship, class='form-control')}}
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.name, class='form-control')}}
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        
+                    
+                                                     </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="row">
+                                                               <div class="col-lg-9">
+                                                                                                
+                                                            </div>
+                                                            
+                                                            <div class="form-group row">
+                                                              
+                                                        </div>
+                    
+                                                        
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.address, class='form-control' )}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.phone, class='form-control' )}}
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                    
+                                               
+                    
+                                        </div>
+                                                <div class="text-right form-group">
+                                                    <button type="submit" class="btn btn-primary">Add Contact</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>			
+                    </div>
+                    <!-- /Main Wrapper -->
+                    
+                    </div>
+                    <!-- /Main Wrapper -->
+
+
+                    
+{% endblock %}

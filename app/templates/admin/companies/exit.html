@@ -1,0 +1,125 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Companies{% endblock %}
+{% block body %}
+
+ <!-- Page Wrapper -->
+ <div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ utils.flashed_messages() }}    
+                    <h3 class="page-title">Retired Clients </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ul>
+                </div>
+                <div class="view-icons">
+                    <a href="#" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                    <a href="#" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
+                </div>
+                
+                            
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+       
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+           <div class="col-sm-4 col-md-4">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Company Name</label>
+                </div>
+           </div>
+
+           <div class="col-sm-4 col-md-4">  
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating">
+                <label class="focus-label">RCC Number</label>
+            </div>
+       </div>
+          
+           <div class="col-sm-4 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+           </div>     
+        </div>
+        <!-- /Search Filter -->
+       
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        {% if companies %}
+                                        <table class="table table-striped custom-table mb-0 datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Company Name</th>
+                                                    <th>RCC Number</th>
+                                                    <th>Contact Phone</th>
+                                                    <th>Status</th>                                        
+                                                    <th>Date Retired</th>
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                 
+                                        {% for company in companies %}
+                        
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a href="#" class="avatar">
+                                    <img   alt="" src="/static/logos/{{company.logo_image }}">
+                                   </a>
+                                    <a href="#"> </a>
+                                </h2>
+                            </td>
+                            <td>{{  company.company_name }}   </td>
+                            <td>{{  company.rcc_no }}</td>
+                            <td>{{ company.contact_number }} </td>
+                            <td >{{ company.verified }}  </td>
+                            <td><a href="" class="btn btn-grey btn-sm btn-rounded ">{{ company.deleted_at.strftime('%d %b, %Y')  }}  </a>  </td>
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="{{ url_for('admin.delete_company', id=company.id) }}" ><i class="fa fa-trash-o m-r-5"></i> Delete Company</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.restore_company', id=company.id) }}" ><i class="fa fa-trash m-r-5"></i> Retire</a>
+
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Page Content -->
+    
+  
+   
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

@@ -1,0 +1,247 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="file-wrap">
+								<div class="file-sidebar">
+									<div class="file-header justify-content-center">
+										<span>File Manager</span>
+										<a href="javascript:void(0);" class="file-side-close"><i class="fa fa-times"></i></a>
+									</div>
+									<form class="file-search">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<i class="fa fa-search"></i>
+											</div>
+											<input type="text" class="form-control" placeholder="Search">
+										</div>
+									</form>
+									<div class="file-pro-list">
+										<div class="file-scroll">
+											<ul class="file-menu">
+												<li class="active">
+													<a href="#">All Projects</a>
+												</li>
+												<li>
+													<a href="#">Office Management</a>
+												</li>
+												<li>
+													<a href="#">Video Calling App</a>
+												</li>
+												<li>
+													<a href="#">Hospital Administration</a>
+												</li>
+												<li>
+													<a href="#">Virtual Host</a>
+												</li>
+											</ul>
+											<div class="show-more">
+												<a href="#">Show More</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="file-cont-wrap">
+									<div class="file-cont-inner">
+										<div class="file-cont-header">
+											<div class="file-options">
+												<a href="javascript:void(0)" id="file_sidebar_toggle" class="file-sidebar-toggle">
+													<i class="fa fa-bars"></i>
+												</a>
+											</div>
+											<span>File Manager</span>
+											<div class="file-options">
+												<span class="btn-file"><input type="file" class="upload"><i class="fa fa-upload"></i></span>
+											</div>
+										</div>
+										<div class="file-content">
+											<form class="file-search">
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<i class="fa fa-search"></i>
+													</div>
+													<input type="text" class="form-control" placeholder="Search">
+												</div>
+											</form>
+											<div class="file-body">
+												<div class="file-scroll">
+													<div class="file-content-inner">
+														<h4>Recent Files</h4>
+														<div class="row row-sm">
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+																<div class="card card-file">
+																	<div class="dropdown-file">
+																		<a href="" class="dropdown-link" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+																		<div class="dropdown-menu dropdown-menu-right">
+																			<a href="#" class="dropdown-item">View Details</a>
+																			<a href="#" class="dropdown-item">Share</a>
+																			<a href="#" class="dropdown-item">Download</a>
+																			<a href="#" class="dropdown-item">Rename</a>
+																			<a href="#" class="dropdown-item">Delete</a>
+																		</div>
+																	</div>
+																	<div class="card-file-thumb">
+																		<i class="fa fa-file-pdf-o"></i>
+																	</div>
+																	<div class="card-body">
+																		<h6><a href="">Sample.pdf</a></h6>
+																		<span>10.45kb</span>
+																	</div>
+																	<div class="card-footer">
+																		<span class="d-none d-sm-inline">Last Modified: </span>1 min ago
+																	</div>
+																</div>
+															</div>
+
+			
+															
+														
+															
+									
+
+														</div>
+
+														<h4>Files</h4>
+														<div class="row row-sm">
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+																<div class="card card-file">
+																	<div class="dropdown-file">
+																		<a href="" class="dropdown-link" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+																		<div class="dropdown-menu dropdown-menu-right">
+																			<a href="#" class="dropdown-item">View Details</a>
+																			<a href="#" class="dropdown-item">Share</a>
+																			<a href="#" class="dropdown-item">Download</a>
+																			<a href="#" class="dropdown-item">Rename</a>
+																			<a href="#" class="dropdown-item">Delete</a>
+																		</div>
+																	</div>
+																	<div class="card-file-thumb">
+																		<i class="fa fa-file-word-o"></i>
+																	</div>
+																	<div class="card-body">
+																		<h6><a href="">Updates.docx</a></h6>
+																		<span>12mb</span>
+																	</div>
+																	<div class="card-footer">9 Aug 1:17 PM</div>
+																</div>
+															</div>
+															
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+																<div class="card card-file">
+																	<div class="dropdown-file">
+																		<a href="" class="dropdown-link" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+																		<div class="dropdown-menu dropdown-menu-right">
+																			<a href="#" class="dropdown-item">View Details</a>
+																			<a href="#" class="dropdown-item">Share</a>
+																			<a href="#" class="dropdown-item">Download</a>
+																			<a href="#" class="dropdown-item">Rename</a>
+																			<a href="#" class="dropdown-item">Delete</a>
+																		</div>
+																	</div>
+																	<div class="card-file-thumb">
+																		<i class="fa fa-file-powerpoint-o"></i>
+																	</div>
+																	<div class="card-body">
+																		<h6><a href="">Vision.ppt</a></h6>
+																		<span>72.50kb</span>
+																	</div>
+																	<div class="card-footer">6 Aug 11:42 AM</div>
+																</div>
+															</div>
+															
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+																<div class="card card-file">
+																	<div class="dropdown-file">
+																		<a href="" class="dropdown-link" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+																		<div class="dropdown-menu dropdown-menu-right">
+																			<a href="#" class="dropdown-item">View Details</a>
+																			<a href="#" class="dropdown-item">Share</a>
+																			<a href="#" class="dropdown-item">Download</a>
+																			<a href="#" class="dropdown-item">Rename</a>
+																			<a href="#" class="dropdown-item">Delete</a>
+																		</div>
+																	</div>
+																	<div class="card-file-thumb">
+																		<i class="fa fa-file-audio-o"></i>
+																	</div>
+																	<div class="card-body">
+																		<h6><a href="">Voice.mp3</a></h6>
+																		<span>2.17mb</span>
+																	</div>
+																	<div class="card-footer">
+																		<span class="d-none d-sm-inline">Last Modified: </span>30 Jul 9:00 PM
+																	</div>
+																</div>
+															</div>
+															
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+																<div class="card card-file">
+																	<div class="dropdown-file">
+																		<a href="" class="dropdown-link" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+																		<div class="dropdown-menu dropdown-menu-right">
+																			<a href="#" class="dropdown-item">View Details</a>
+																			<a href="#" class="dropdown-item">Share</a>
+																			<a href="#" class="dropdown-item">Download</a>
+																			<a href="#" class="dropdown-item">Rename</a>
+																			<a href="#" class="dropdown-item">Delete</a>
+																		</div>
+																	</div>
+																	<div class="card-file-thumb">
+																		<i class="fa fa-file-pdf-o"></i>
+																	</div>
+																	<div class="card-body">
+																		<h6><a href="">Tutorials.pdf</a></h6>
+																		<span>8.2mb</span>
+																	</div>
+																	<div class="card-footer">21 Jul 10:45 PM</div>
+																</div>
+															</div>
+															
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+															
+															</div>
+															
+															<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+																
+															</div>
+															
+																	
+															
+														
+															
+															
+															
+														
+															
+									
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+                </div>
+				<!-- /Page Content -->
+				
+            </div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+        <!-- /Main Wrapper -->
+{% endblock %}

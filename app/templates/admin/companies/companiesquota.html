@@ -1,0 +1,133 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+ <!-- Page Wrapper -->
+ <div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ utils.flashed_messages() }}    
+                    <h3 class="page-title">Companies</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_company') }}"class="btn add-btn" ><i class="fa fa-plus"></i> Add Company</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Leave Statistics -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Score Cards</h6>
+                    <h4>12 / 60</h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Total Positions</h6>
+                    <h4>8 <span>Today</span></h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Active Quotas</h6>
+                    <h4>0 <span>Today</span></h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Grace Period</h6>
+                    <h4>12</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /Leave Statistics -->
+        
+        <!-- Search Filter -->
+        
+       
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        {% if companies %}
+                                        <table class="table table-striped custom-table mb-0 datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <th>Email</th>
+                                                    <th>Tel: Number </th>
+                                                    <th>Contact: Address</th>
+                                                   
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                 
+                        {% for company in companies %}
+                        
+                        <tr>
+                            
+                            <td>
+                                <h2 class="table-avatar">
+ 
+                                    <a href="{{ url_for('admin.view_files', company_id=company.id) }}"" class="avatar"><img alt="" src="/static/logos/{{company.logo_image }}"></a>
+                                   
+                                    <a href="#"> {{company.company_name}}</a>
+                                </h2>
+                            </td>
+                            
+                            <td>{{ company.company_email }}</td>
+                            <td>{{ company.contact_number }}</td>
+                           
+                            
+                            <td><a href="" class="btn btn-white btn-sm btn-rounded ">{{  company.company_address }} </a>  </td>
+                      
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ url_for('admin.create_quota', id=company.id) }}" ><i class="fa fa-users m-r-5"></i> add quota</a>
+
+                                        <a class="dropdown-item" href="{{ url_for('admin.view_files', company_id=company.id) }}" ><i class="fa fa-eye m-r-5"></i> View Folder</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.edit_company', id=company.id) }}" ><i class="fa fa-pencil m-r-5"></i> Edit </a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.delete_company', id=company.id) }}" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Page Content -->
+    
+  
+   
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Companies{% endblock %}
+{% block body %}
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        {{ utils.flashed_messages() }}  
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Companies Report</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Only</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        {% if quota, token_serial, company, lap %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-nowrap custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Position</th>
+                                <th>Quota Token</th>
+                                <th>Status</th>
+                                <th>expiry Date</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%   for quota, company, token_serial, lap in companies:  %}
+                            <tr>
+                                <td>{{ company.id }}</td>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="{{ url_for('admin.list_companies') }}}" class="avatar"><img alt="" src="/static/logos/{{company.logo_image }} "></a>
+                                        <a href="#">{{company.company_name}} </a>
+                                    </h2>
+                                </td>
+                                <td>{{ company.company_email }}</td>
+                                <td>{{ company.contact_number }}</td>
+                                
+                                <td> {{ quota.no_of_positions }}</td> 
+                                <td>  {{token_serial.serial_no}}</td>                                                        
+                            
+                                {% if  quota.renew_status == 'Active'  %}
+                                <td><span class="badge bg-inverse-success">Document Good!</span></td>
+                                {%  elif  quota.renew_status =="warning" %}
+                                <td><span class="badge bg-inverse-warning">Check quota</span></td>
+                                {%  elif  quota.renew_status =='Expired' %}
+                                <td><span class="badge bg-inverse-danger">quota Expired!</span></td>
+                              
+                                   {% endif %}
+                                <td>{{ quota.quota_exp_date.strftime('%B %d, %Y') }}</td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            <a class="dropdown-item" href="{{ url_for('admin.list_quotas') }}" ><i class="fa fa-pencil m-r-5"></i> Quota list</a>
+                                            <a class="dropdown-item" href="{{ url_for('admin.list_companies') }}" ><i class="fa fa-pencil m-r-5"></i> Company list</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}             
+                      
+                        </tbody>
+                    </table>
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+    {% endif %}
+</div>
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+ 
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

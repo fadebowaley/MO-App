@@ -1,0 +1,204 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+ <!-- Page Wrapper -->
+ <div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ utils.flashed_messages() }}    
+                    <h3 class="page-title">Pending Quota Documents</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_quota') }}"class="btn add-btn" ><i class="fa fa-plus"></i> Add Quota</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+           <div class="col-sm-4 col-md-4">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee Name</label>
+                </div>
+           </div>
+
+           <div class="col-sm-4 col-md-4">  
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating">
+                <label class="focus-label">Serial Number</label>
+            </div>
+       </div>
+          
+           <div class="col-sm-4 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+           </div>     
+        </div>
+        <!-- /Search Filter -->
+       
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        {% if quotas %}
+                                        <table class="table table-striped custom-table mb-0 datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <th>Quota Reference</th>
+                                                    <th>Positions </th>
+                                                    <th>Contact Number</th>
+                                                    
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                 
+                        {% for quota in quotas %}
+                        
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a href="#" class="avatar"><img alt="" src="/static/logos/{{ quota.company.logo_image }}"></a>
+                                    <a href="#"> {{quota.company.company_name}}</a>
+                                </h2>
+                            </td>
+                            <td>{{ quota.quota_reference}}</td>
+                            <td>{{ quota.no_of_positions }}</td>
+                            <td> {{quota.company.contact_number}} </td>
+                            
+
+                            
+                            {% if  quota.process_status == 1 and quota.approval_status== 0 %}
+                            <td class="text-center">
+                                  
+                                  <span class="badge bg-inverse-warning">yet to approve</span>
+                                </td>
+                            {% elif  quota.process_status == 1 and quota.approval_status== 1 %}
+                            <td class="text-center">
+                                  
+                                  <span class="badge bg-inverse-success">Quota Approved!</span>
+                                </td>
+                                    {% elif  quota.process_status == 0 and quota.approval_status== 0 %}
+                                    <span class="badge bg-inverse-warning">yet to be renewed</span>
+
+                                                             
+                                {% endif %}
+                                                        
+                                <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="{{ url_for('admin.show_quota', id=quota.id) }}" ><i class="fa fa-pencil m-r-5"></i> View</a>
+ 
+
+                                        <a class="dropdown-item" href="{{ url_for('admin.approve_quota', id=quota.id) }}"data-toggle="modal"
+                                                data-target="#approve_quota" ><i class="fa fa-trash-o m-r-5"></i> Approve</a>
+                                        </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- /Page Content -->
+    
+  
+   <!-- Approve Quota Modal -->
+   <div class="modal custom-modal fade" id="approve_quota" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Approve Quota</h3>
+                    <p>Confirm the date on Quota to Approve</p>
+                </div>
+                {% for quota in quotas %}
+                <form method="POST" action="{{ url_for('admin.approve_quota', id=quota.id) }}" enctype="multipart/form-data">
+                 {% endfor%}
+
+                  	<div class="row">
+
+						<div class="form-group col-sm-6">
+						<label>Effective Date <span class="text-danger">*</span></label>
+						
+						<input class="form-control " type="date" name="effective_date">
+						
+						</div>
+
+                        <div class="form-group col-sm-6">
+                        <label>Expired Date <span class="text-danger">*</span></label>
+						
+						<input class="form-control " type="date" name="quota_exp_date">
+						
+					    </div>
+                        </div>
+
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-primary submit-btn" type="submit" name="submit" value="Submit">Submit</button>
+                        </div>
+                        
+                        <div class="col-6">
+                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Decline</a>
+                        </div>
+                    </div>
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                      
+                                        <table class="table table-striped custom-table mb-0 datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <th>Quota Reference</th>
+                                                    <th>Positions </th>
+                                                    <th>Positions Ref</th>
+                                                    
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+<!-- /Approve Leave Modal -->
+<!-- /Page Wrapper -->
+ {% endif %}
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title> brvcase pricing</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    <!--Core CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">    
+    <link href="{{ url_for('static', filename='css/core.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="is-theme-core">
+    <!--<div class="pageloader"></div>
+    <div class="infraloader is-active"></div>-->
+    <!-- Hero and nav -->
+    <div class="hero is-theme-primary">
+
+        <nav class="navbar navbar-wrapper navbar-fade navbar-light is-transparent">
+            <div class="container">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="{{url_for('home.homepage')}}">
+                        
+                        <img class="light-logo" src="{{ url_for('static', filename='img/logos/logo/bulkit-white.svg') }}" alt="">
+                    </a>
+
+                    <!-- Sidebar Trigger -->
+                    <a id="navigation-trigger" class="navbar-item hamburger-btn" href="javascript:void(0);">
+                        <span class="menu-toggle">
+                            <span class="icon-box-toggle">
+                                <span class="rotate">
+                                    <i class="icon-line-top"></i>
+                                    <i class="icon-line-center"></i>
+                                    <i class="icon-line-bottom"></i>
+                                </span>
+                        </span>
+                        </span>
+                    </a>
+
+                    <!-- Responsive toggle -->
+                    <div class="custom-burger" data-target="">
+                        <a id="" class="responsive-btn" href="javascript:void(0);">
+                            <span class="menu-toggle">
+                                <span class="icon-box-toggle">
+                                    <span class="rotate">
+                                        <i class="icon-line-top"></i>
+                                        <i class="icon-line-center"></i>
+                                        <i class="icon-line-bottom"></i>
+                                    </span>
+                            </span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Responsive toggle -->
+                </div>
+
+                <!-- Navbar menu -->
+                <div class="navbar-menu">
+                    <!-- Navbar Start -->
+                    <div class="navbar-start">
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" href="{{url_for('home.features')}}">
+                            Features
+                        </a>
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" href="{{url_for('home.pricing')}}">
+                            Pricing
+                        </a>
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" href="{{url_for('auth.login')}}">
+                            Login
+                        </a>
+                    </div>
+
+                    <!-- Navbar end -->
+                    <div class="navbar-end">
+                        <!-- Signup button -->
+                        <div class="navbar-item">
+                            <a id="#signup-btn" href="{{url_for('auth.register')}}" class="button button-signup btn-outlined is-bold btn-align light-btn raised">
+                                Free Trial
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero image -->
+        <div id="main-hero" class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-6 is-offset-3 is-header-caption has-text-centered pt-60">
+                        <h1 class="title main-title">
+                            Check out our Plans.
+                        </h1>
+                        <h2 class="subtitle is-5 light-text">
+                            Pick the right plan for you.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-light-grey is-skewed-sm clean-pricing">
+        <div class="container has-text-centered is-reverse-skewed-sm">
+            <!-- Pricing tables -->
+            <div class="columns is-vcentered giant-pb">
+                <div class="column is-5 has-text-left">
+                    <!-- Period selector -->
+                    <div class="period-select">
+                        <span class="clean-text is-active">Monthly</span>
+                        <span class="clean-text">Annualy</span>
+                    </div>
+                    <h2 class="title theme clean-text pb-10 pt-10 is-2 no-margin">
+                        Choose a plan.
+                    </h2>
+                    <!-- Plan type switcher -->
+                    <div class="plan-controls">
+                        <span id="show-freelance" class="clean-text is-active">Freelancer</span>
+                        <span id="show-business" class="clean-text">Business</span>
+                    </div>
+                    <div class="subtitle is-6 mt-20">
+                        Wether you are a dynamic startup, Agency or Lawfirm , 
+                        brvcase will meet your business needs and give you value and growth.
+                    </div>
+                    <br>
+                </div>
+                <div class="column is-8">
+                    <!-- Freelance pricing -->
+                    <div id="freelance-pricing" class="side-pricing">
+                        <div class="columns is-vcentered">
+                            <div class="column">
+                                <!-- Pricing table features -->
+                                <div class="pricing-card animated preFadeInLeft fadeInLeft">
+                                    <div class="popular"><i class="im im-icon-Crown-2"></i></div>
+                                    <div class="inner">
+                                        <h6 class="plan-name">Free</h6>
+                                        <div class="plan-price">
+                                            <small class="currency">$</small>
+                                            <div class="month-price animated preFadeInUp fadeInUp">
+                                                <span>0</span>
+                                                <small>/ month</small>
+                                            </div>
+                                            <div class="year-price animated preFadeInUp fadeInUp is-hidden">
+                                                <span>0</span>
+                                                <small>/ year</small>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><b>15</b> Invoices per month</li>
+                                            <li><b>2 Gb</b> Storage</li>
+                                            <li><b>1</b> User account</li>
+                                            <li><b>20</b> Clients</li>
+                                        </ul>
+                                        <a href="#" class="button button-cta primary-btn raised">Sign up</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <!-- Pricing table transparent -->
+                                <div class="pricing-card transparent animated preFadeInLeft fadeInLeft delay-1">
+                                    <div class="inner">
+                                        <h6 class="plan-name">Freelancer</h6>
+                                        <div class="plan-price">
+                                            <small class="currency">$</small>
+                                            <div class="month-price animated preFadeInUp fadeInUp">
+                                                <span>15</span>
+                                                <small>/ month</small>
+                                            </div>
+                                            <div class="year-price animated preFadeInUp fadeInUp is-hidden">
+                                                <span>180</span>
+                                                <small>/ year</small>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><b>60</b> Invoices per month</li>
+                                            <li><b>15 Gb</b> Storage</li>
+                                            <li><b>1</b> User account</li>
+                                            <li><b>∞</b> Clients</li>
+                                        </ul>
+                                        <a href="{{url_for('auth.register')}}" class="button button-cta primary-btn btn-outlined is-bold">Sign up</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Freelance pricing -->
+
+                    <!-- Business pricing -->
+                    <div id="business-pricing" class="side-pricing is-hidden">
+                        <div class="columns is-vcentered">
+                            <div class="column">
+                                <!-- Pricing table featured -->
+                                <div class="pricing-card raised animated preFadeInLeft fadeInLeft">
+                                    <div class="popular"><i class="im im-icon-Crown-2"></i></div>
+                                    <div class="inner">
+                                        <h6 class="plan-name">Pro</h6>
+                                        <div class="plan-price">
+                                            <small class="currency">$</small>
+                                            <div class="month-price animated preFadeInUp fadeInUp">
+                                                <span>49</span>
+                                                <small>/ month</small>
+                                            </div>
+                                            <div class="year-price animated preFadeInUp fadeInUp is-hidden">
+                                                <span>588</span>
+                                                <small>/ year</small>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><b>500 +</b> Invoices per month</li>
+                                            <li><b>50 Gb</b> Storage</li>
+                                            <li><b>10</b> User accounts</li>
+                                            <li><b>∞</b> Clients</li>
+                                        </ul>
+                                        <a href="{{url_for('auth.register')}}" class="button button-cta btn-align primary-btn raised">Sign up</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <!-- Pricing table transparent -->
+                                <div class="pricing-card transparent animated preFadeInLeft fadeInLeft delay-1">
+                                    <div class="inner">
+                                        <h6 class="plan-name">Business</h6>
+                                        <div class="plan-price">
+                                            <small class="currency">$</small>
+                                            <div class="month-price animated preFadeInUp fadeInUp">
+                                                <span>125</span>
+                                                <small>/ month</small>
+                                            </div>
+                                            <div class="year-price animated preFadeInUp fadeInUp is-hidden">
+                                                <span>1500</span>
+                                                <small>/ year</small>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li><b>2000 +</b> Invoices per month</li>
+                                            <li><b>200 Gb</b> Storage</li>
+                                            <li><b>30 +</b> User account</li>
+                                            <li><b>∞</b> Clients</li>
+                                        </ul>
+                                        <a href="{{url_for('auth.register')}}" class="button button-cta primary-btn btn-outlined is-bold">Sign up</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section is-medium">
+        <div class="container">
+            <h2 class="title section-subtitle clean-text color-primary has-text-centered is-2">
+                Frequent Asked questions
+            </h2>
+
+            <div class="content-wrapper">
+                <div class="columns">
+                    <div class="column is-4 is-offset-2">
+                        <div class="content">
+                            <p class="text-bold color-primary">1. What do brvcase offer me ?</p>
+                            <p>We offer cloud-based brief  management software solutions that makes running your 
+                                firm, organizing cases, and collaborating with clients from one place possible; 
+                                giving you more time with clients and less paper work.</p>
+                        </div>
+                        <div class="content">
+                            <p class="text-bold color-primary">2. What Do I get from brvcase?</p>
+                            <p> At the most basic level, brvcase helps put all your accounts and contact information in a central and accessible 
+                            place, so you accelerate and streamline the sales process. For instance, 
+                            instead of being mired down in yellow sticky note reminders or buried in spreadsheets and Google Docs, 
+                            you can move leads through your sales team quickly and easily, as a team..</p>
+                        </div>
+                        <div class="content">
+                            <p class="text-bold color-primary">3. Is brvcase worth the value for small Agency?</p>
+                            <p>Yes. Even if your customer base is small, no one can keep every interaction — ones that have happened, 
+                            or need to happen — memorized and organized. brvcase is a powerful 
+                            business tool that streamlines processes, gives valuable business insights, 
+                            and virtually connects employees at your company so they can collaborate as 
+                            a team, in real time. That’s something businesses of any size can use.</p>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <div class="content">
+                            <p class="text-bold color-primary">4. How do you know your business need a brvcase?</p>
+                            <p> Below are some clues that can help you in your decision.<br>
+                                <strong>Signs you need BRVCASE </strong>
+                                <ul>  
+                              
+                                If anything on this short checklist sounds familiar, 
+                                brvcase might be worth exploring to help your business find, win, and keep customers more efficiently.
+
+                                <li>You have teams that work closely together, even when not actually together</li>
+                                <li>Your sales teams are often on the road</li>
+                                <li>You are unable to quickly find customer data to make decisions fast</li>
+                                <li>You feel deals are falling through the cracks because you’re managing things in spreadsheets and notebooks</li>
+                                <li>You have a patchwork of apps that you call CRM but they are not really connected on top of a single database or “system of record”</li>
+                                <li>Your business is growing more quickly than you feel ready for</li>
+                                <li>You know that your business’ customer service experience is lacking or you are losing more customers because of service issues than you’d like</li>
+                                <li>You or your IT department is buried with maintenance requests</li>
+
+                                  </ul></p>
+                        </div>
+                        <div class="content">
+                            <p class="text-bold color-primary">4. Do you have a refund policy?</p>
+                            <p> Yes! We provide up to 30 days of money back for 
+                            the majority of our products.please checkk our refund policy section.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /FAQ -->
+
+    <!-- Contact form -->
+    <div class="section is-medium section-feature-grey">
+        <div class="container">
+            <h2 class="title section-subtitle clean-text dark-text has-text-centered is-2">
+                Have an inquiry ?
+            </h2>
+            <h2 class="subtitle clean-text has-text-centered is-5">Drop us a line or two</h2>
+
+            <div class="content-wrapper">
+                <form>
+                    <div class="columns">
+                        <div class="column is-6 is-offset-3">
+                            <div class="columns is-vcentered">
+                                <div class="column is-4">
+                                    <div class="control-material is-primary">
+                                        <input class="material-input" 
+                                        type="text" 
+                                        required=""
+                                        name = "name">
+                                        <span class="material-highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Name *</label>
+                                    </div>
+                                </div>
+                                <div class="column is-4">
+                                    <div class="control-material is-primary">
+                                        <input class="material-input" 
+                                        name = "email"
+                                        type="email" 
+                                        required="">
+                                        <span class="material-highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Email *</label>
+                                    </div>
+                                </div>
+                                <div class="column is-4">
+                                    <div class="control-material is-primary">
+                                        <input class="material-input" 
+                                        name = "company"
+                                        type="text" required="">
+                                        <span class="material-highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Company</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-material is-primary">
+                                <textarea rows="5"
+                                name="message"></textarea>
+                                <span class="material-highlight"></span>
+                                <span class="bar"></span>
+                                <label>Message *</label>
+                            </div>
+                            <div class="has-text-centered">
+                                <button type="submit"
+                                name="submit" class="button button-cta btn-align primary-btn raised no-lh">Send
+                                    message</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side footer -->
+    <footer class="footer footer-light-left">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-6">
+                    <div class="mb-20">
+                        <img class="small-footer-logo" src="assets\img\logos\bulkit-logo-g.png" alt="">
+                    </div>
+                    <div>
+                        <span class="moto">Designed and coded with <i class="fa fa-heart color-red"></i> by brvcase.</span>
+                        <nav class="level is-mobile mt-20">
+                            <div class="level-left level-social">
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-facebook"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-twitter"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-linkedin"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-dribbble"></i></span>
+                                </a>
+                                <a href="#" class="level-item">
+                                    <span class="icon"><i class="fa fa-github"></i></span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="footer-nav-right">
+                        <a class="footer-nav-link" href="{{url_for('home.homepage')}}">Home</a>
+                        <a class="footer-nav-link" href="#">Features</a>
+                        <a class="footer-nav-link" href="{{url_for('home.pricing')}}">Pricing</a>
+                        <a class="footer-nav-link" href="{{url_for('auth.login')}}">Sign in</a>
+                        <a class="footer-nav-link" href="{{url_for('auth.register')}}">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Side footer -->
+    <!-- Side navigation -->
+
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
+    
+    </div> <!-- Bulchat Button -->
+   <!-- <div id="bulchat" class="open">
+        <div class="chat-button open g-item"></div>
+    </div> -->
+
+    <!-- Chat widget -->
+
+    <!-- /Chat widget -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+   
+    <script src="{{ url_for('static', filename='js/app_home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core_home.js') }}"></script>
+</body>
+
+</html>

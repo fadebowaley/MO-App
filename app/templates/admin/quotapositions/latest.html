@@ -1,0 +1,127 @@
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+     
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+            <!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="chat-main-row">
+                    <div class="chat-main-wrapper">
+                        <div class="col-lg-7 message-view task-view task-left-sidebar">
+                            <div class="chat-window">
+                                <div class="fixed-header">
+                                    <div class="navbar">
+                                        <div class="float-left mr-auto">
+                                            <div class="add-task-btn-wrapper">
+                                                <span class="add-task-btn btn btn-white btn-sm">
+                                                    Add Quota Positions
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <a class="task-chat profile-rightbar float-right" id="task_chat" href="#task_window"><i class="fa fa fa-comment"></i></a>
+                                        <ul class="nav float-right custom-menu">
+                                            <li class="nav-item dropdown dropdown-action">
+                                                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="javascript:void(0)">Pending Tasks</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Completed Tasks</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">All Tasks</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="chat-contents">
+                                    <div class="chat-content-wrap">
+                                        <div class="chat-wrap-inner">
+                                            <div class="chat-box">
+                                                <div class="task-wrapper">
+                                                    <div class="task-list-container">
+                                                        <div class="task-list-body">
+                                                            <ul id="task-list">
+                                                                <li class="task">
+                                                                    <div class="task-container">
+                                                                        <span class="task-action-btn task-check">
+                                                                            <span class="action-circle large complete-btn" title="Mark Complete">
+                                                                                <i class="material-icons">check</i>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="task-label" contenteditable="true">input quota positions</span>
+                                                                        <span class="task-action-btn task-btn-right">
+                                                                            <span class="action-circle large" title="Assign">
+                                                                                <i class="material-icons">person_add</i>
+                                                                            </span>
+                                                                            <span class="action-circle large delete-btn" title="Delete Task">
+                                                                                <i class="material-icons">delete</i>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </li>
+                                                                                                                       
+
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                        <div class="task-list-footer">
+                                                            <div class="new-task-wrapper">
+                                                                <textarea id="new-task" placeholder="Enter new task here. . ."></textarea>
+                                                                <span class="error-message hidden">You need to a Quota Position first</span>
+                                                                <span class="add-new-task-btn btn" id="add-task">Add Task</span>
+                                                                <span class="btn btn-danger" id="close-task-panel">Close</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="notification-popup hide">
+                                                    <p>
+                                                        <span class="task"></span>
+                                                        <span class="notification-text"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                
+
+            </div>
+            <!-- /Page Wrapper -->
+
+        </div>
+        <!-- /Main Wrapper -->
+<!-- jQuery -->
+
+
+
+
+        
+<!-- /Main Wrapper -->
+{% endblock %}
+    
+
+
+
+      
+
+
+
+    </body>
+            
+</html>

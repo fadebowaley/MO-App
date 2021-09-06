@@ -1,0 +1,116 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+    {% import "bootstrap/utils.html" as utils %}
+    {% import "bootstrap/wtf.html" as wtf %}
+
+<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+					<div class="row">
+						<div class="col-md-8 offset-md-2">
+						 {{ utils.flashed_messages() }}
+						
+							<!-- Page Header -->
+							<div class="page-header">
+								<div class="row">
+									<div class="col-sm-12">
+										<h3 class="page-title">{{title}}</h3>
+									</div>
+								</div>
+							</div>
+							<!-- /Page Header -->
+							
+							<form action="" method="post" enctype="multipart/form-data" class="form" role="form">
+							{{ form.csrf_token }}
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											{{ wtf.form_field(form.company_name, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											{{ wtf.form_field(form.contact_person, class='form-control')}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											{{ wtf.form_field(form.company_address, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-6 col-lg-3">
+										<div class="form-group">
+											{{ wtf.form_field(form.city, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-6 col-lg-3">
+										<div class="form-group">
+											{{ wtf.form_field(form.state, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-6 col-lg-3">
+										<div class="form-group">
+											{{ wtf.form_field(form.country, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-6 col-lg-3">
+										<div class="form-group">
+											{{ wtf.form_field(form.postal_code, class='form-control')}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											{{ wtf.form_field(form.company_email, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											{{ wtf.form_field(form.company_number, class='form-control')}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											{{ wtf.form_field(form.contact_number, class='form-control')}}
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											{{ wtf.form_field(form.logo_image, class='form-control')}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											{{ wtf.form_field(form.nature, class='form-control', Placeholder='e.g Manufacturing')}}
+										</div>
+									</div>
+								</div>
+								<div class="submit-section">
+									<button class="btn btn-primary submit-btn">Save</button>
+								</div>
+							</form>
+						</div>
+					</div>
+                </div>
+				<!-- /Page Content -->
+				
+            </div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+
+
+    {% endblock %}

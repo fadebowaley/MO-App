@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Cerpac{% endblock %}
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Employee Profile  </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url_for('admin.list_cerpacs') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin Only</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title mb-0">Employee Data</h4> 
+                    </div>
+                 
+                    <div class="card-body">
+                        <thead>
+                            <tr>
+                                <th>Employee Name </th>
+                                <th>issue date </th>
+                                <th>Expiry date </th>
+                                <th>Days Left </th>
+                                <th>Serial number </th>
+                                <th>Status </th>
+                                <th>Employee Email </th>
+                                <th>Employee Phone </th>
+                                <th class="text-right no-sort">Action</th>
+                            </tr>
+                        </thead>
+                      
+
+                        <ul>
+                           <li> <a href="#" class="avatar"><img alt="" src="{{ image_file }}"></a> </li>
+                            <li>{{ cerpac.employee.first_name }} {{ cerpac.employee.last_name }} </li>
+                            <li>{{ cerpac.cerpac_issue_date.strftime('%B %d, %Y') }}  </li>
+                            <li>{{ cerpac.expired_date.strftime('%B %d, %Y') }} </li> 
+                            <li>{{ cerpac.remaining_days }} </li>
+                            <li>{{ cerpac.cerpac_serial_no }} </li>
+                            <li>{{ cerpac.renew_status }} </li>
+                            <li>{{ cerpac.employee.email }} </li>
+                            <li>{{ cerpac.employee.phone }} </li>
+                            
+ 
+                    </ul>
+                       
+                        
+                    </div>
+
+                </div>
+            
+
+            </div>
+        </div>
+    
+    </div>			
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

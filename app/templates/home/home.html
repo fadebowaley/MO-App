@@ -1,0 +1,695 @@
+﻿
+{% import "bootstrap/utils.html" as utils %}
+{% extends "layout.html" %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% block title %}Welcome to brvcase {% endblock %}
+{% block body %}
+
+
+<span style="color:blue;font-weight:bold; font-size:16px ;"> {{ utils.flashed_messages() }}</span>
+
+
+
+
+<body class="is-theme-core">
+        <!-- Hero image -->
+        <div id="main-hero" class="hero-body">
+
+
+            <div class="container has-text-centered">
+                <div class="columns is-vcentered">
+                    <div class="column is-5 signup-column has-text-left">
+
+                        <!--Update Pill-->
+                        <div class="update-pill">
+                            <span class="inner-tag">New Update</span>
+                            <span class="inner-text">Check out our newest features</span>
+                        </div>
+
+
+                        <h2 class="title  dark-text text-bold is-6" style="font-size:4.5vw;">                                                      
+                       <!-- Designed for briefs and cases-->
+                         <strong>Expatriate </strong>Workforce Managememt
+                        </h2>
+                        <h3 class="subtitle is-5 no-margin-bottom body-color">                        
+                           Best cloud-based solution  for Lawyers, Agencies and Firms.
+                           Manage your expatriates STRs, Quota and Cerpac anywhere, anytime.
+                        </h2>
+                        <br>
+                        <!-- Signup form -->
+                        <div class="signup-block is-rounded">
+                            <form action="" method="post" class="form" role="form">
+                                <div class="control">
+                                    <input type="email" class="input" name="email" placeholder="Your email address">
+                                    <button type="submit" class="button btn-align primary-btn raised">Sign up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="column is-7">
+                        <!-- Hero mockup -->
+                        <figure class="image blob-figure">
+                            <div class="morphing-blob-wrapper sub-blob-1">
+                                <div class="blob-inner levitate">
+                                    <svg class="organic-blob" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <filter class="goo">
+                                                <!-- tympanus.net/codrops/creative-gooey-effects -->
+                                                <fegaussianblur in="SourceGraphic" stddeviation="10" result="blur"></fegaussianblur>
+                                                <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"></fecolormatrix>
+                                                <fecomposite in="SourceGraphic" in2="goo" operator="atop"></fecomposite>
+                                            </filter>
+                                        </defs>
+                                        <circle class="Circle1"></circle>
+                                        <circle class="Circle2"></circle>
+                                        <circle class="Circle3"></circle>
+                                        <circle class="Circle4"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="morphing-blob-wrapper sub-blob-2">
+                                <div class="blob-inner levitate">
+                                    <svg class="organic-blob" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <filter class="goo">
+                                                <!-- tympanus.net/codrops/creative-gooey-effects -->
+                                                <fegaussianblur in="SourceGraphic" stddeviation="10" result="blur"></fegaussianblur>
+                                                <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"></fecolormatrix>
+                                                <fecomposite in="SourceGraphic" in2="goo" operator="atop"></fecomposite>
+                                            </filter>
+                                        </defs>
+                                        <circle class="Circle1"></circle>
+                                        <circle class="Circle2"></circle>
+                                        <circle class="Circle3"></circle>
+                                        <circle class="Circle4"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="morphing-blob-wrapper sub-blob-3">
+                                <div class="blob-inner levitate">
+                                    <svg class="organic-blob" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <filter class="goo">
+                                                <!-- tympanus.net/codrops/creative-gooey-effects -->
+                                                <fegaussianblur in="SourceGraphic" stddeviation="10" result="blur"></fegaussianblur>
+                                                <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"></fecolormatrix>
+                                                <fecomposite in="SourceGraphic" in2="goo" operator="atop"></fecomposite>
+                                            </filter>
+                                        </defs>
+                                        <circle class="Circle1"></circle>
+                                        <circle class="Circle2"></circle>
+                                        <circle class="Circle3"></circle>
+                                        <circle class="Circle4"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                            <img class="rounded-app animated preFadeInUp fadeInUp" src="{{ url_for('static', filename='img/graphics/apps/app-videoconference-core.png') }}" data-extension=".png" alt="">
+              </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="services" class="section">
+        <div class="container">
+            <!-- Title -->
+            <div class="section-title-wrapper has-text-centered">
+                <h2 class="section-title-landing">
+Built for Work                </h2>
+                <h4>Stay organized, and manage your cases—from anywhere, anytime. <br>
+                Our case management functionality ensures every detail <br>
+                from every  cases and briefs is captured.</h4>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="columns is-vcentered is-multiline has-text-centered">
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="wavy-icon-box">
+                            <div class="is-icon-reveal">
+                                <i class="im im-icon-Calendar-4"></i>
+                            </div>
+                            <div class="box-title">Auto-Calendar</div>
+                            <p class="box-content is-tablet-padded">
+
+                            Link every clients, task, invoice, and time entry 
+                            to the appropriate schedule—and add notes for you and your 
+                            staff at any time.
+                            
+                                
+                                </p>
+                        </div>
+                    </div>
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="wavy-icon-box">
+                            <div class="is-icon-reveal">
+                                <i class="im im-icon-Mail-Favorite"></i>
+                            </div>
+                            <div class="box-title">Auto Tracking</div>
+                            <p class="box-content is-tablet-padded">
+                            Track every development in event timelines, 
+                            and see who made what change and when. 
+                            more—so you can be on top of every detail as it happens.</p>
+                        </div>
+                    </div>
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="wavy-icon-box">
+                            <div class="is-icon-reveal">
+                                <i class="im im-icon-Folder-Cloud"></i>
+                            </div>
+                            <div class="box-title">Advanced Document Management</div>
+                            <p class="box-content is-tablet-padded"> Our unique features that
+                            helps Edit, store, and organize documents securely in  the cloud. Reduce clutter and save 
+                            time—no more lugging case files around..</p>
+                        </div>
+                    </div>
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="wavy-icon-box">
+                            <div class="is-icon-reveal">
+                                <i class="im im-icon-Security-Block"></i>
+                            </div>
+                            <div class="box-title">Strong Security</div>
+                            <p class="box-content is-tablet-padded">brvcase offers solution that  
+                            protect your clients’ information and firm’s data with top 
+                            security features and protocols.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-text-centered pt-40 pb-40">
+                    <div class="tabs partner-tabs is-centered">
+                        <ul>
+                            <li><a><img class="partner-logo" src="{{ url_for('static', filename='img/logos/custom/covenant.svg') }}" alt=""></a></li>
+                            <li><a><img class="partner-logo" src="{{ url_for('static', filename='img/logos/custom/infinite.svg') }}" alt=""></a></li>
+                            <li><a><img class="partner-logo" src="{{ url_for('static', filename='img/logos/custom/phasekit.svg') }}" alt=""></a></li>
+                            <li><a><img class="partner-logo" src="{{ url_for('static', filename='img/logos/custom/grubspot.svg') }}" alt=""></a></li>
+                            <li><a><img class="partner-logo" src="{{ url_for('static', filename='img/logos/custom/gutwork.svg') }}" alt=""></a></li>
+
+                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process section -->
+    <div class="section">
+        <div class="container">
+            <!-- Wrapper -->
+            <div class="process-wrap">
+                <!-- Process step -->
+                <div class="process-block has-text-centered">
+                    <div class="process-icon">
+                       
+                        <img src="{{ url_for('static', filename='img/graphics/icons/study-core.svg') }}" data-base-url="assets/img/graphics/icons/study" data-extension=".svg" alt="">
+
+                    </div>
+                    <div class="text-block">
+                        <h4 class="title is-5 no-margin">Sign-Up</h4>
+                        <p>With Just a click your verification is sent to you for signup.</p>
+                    </div>
+                </div>
+                <!-- Process step -->
+                <div class="process-block has-text-centered">
+                    <div class="process-icon">
+                    <img src="{{ url_for('static', filename='img/graphics/icons/learn-core.svg') }}" data-base-url="img/graphics/icons/learn" data-extension=".svg" alt="">
+
+                    </div>
+                    <div class="text-block">
+                        <h4 class="title is-5 no-margin">Set-Up</h4>
+                        <p>Our unique onboarding process gives you a 2 minutes turn-around setup time.</p>
+                    </div>
+                </div>
+                <!-- Process step -->
+                <div class="process-block has-text-centered">
+                    <div class="process-icon">
+                    <img src="{{ url_for('static', filename='img/graphics/icons/aquire-core.svg') }}" data-base-url="img/graphics/icons/aquire" data-extension=".svg" alt="">
+
+                    </div>
+                    <div class="text-block">
+                        <h4 class="title is-5 no-margin">Launch</h4>
+                        <p>You are reading to starting managing your briefs, Cases, Billings like a Pro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features section -->
+    <div class="section">
+        <div class="container">
+            <!-- Title -->
+            <div class="section-title-wrapper has-text-centered pt-40 pb-40">
+                <h2 class="section-title-landing">
+                    More Amazing Features
+                </h2>
+                <h4>Great tools that will make your job easier</h4>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="columns is-vcentered pb-40 pt-40">
+                    <div class="column is-4 is-offset-1">
+                        <!-- Title -->
+                        <div class="icon-subtitle"><i class="im im-icon-Calendar-4"></i></div>
+                        <div class="title quick-feature has-numbers text-bold">
+                            <div>Invoice Management</div>
+                        </div>
+                        <div class="title-divider is-small"></div>
+                        <span class="body-text">Track the status of unpaid bills, 
+                        apply discounts to early payments, or add automated interest to late payments also with
+                         detailed statements of accounts, with your firm logo.</span>
+                        <div class="pt-10 pb-10">
+                            <a href="#" class="button btn-align btn-more is-link color-primary">
+                                Learn more <i class="sl sl-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column is-6 is-offset-1">
+                     
+                        
+                        <img class="featured-image-medium" src="{{ url_for('static', filename='img/graphics/compositions/videoconference-feature-1-core.svg') }}" data-base-url="img/graphics/compositions/videoconference-feature-1" data-extension=".svg" alt="">
+                    </div>
+                </div>
+
+                <div class="columns is-vcentered pb-40 pt-40">
+                    <!-- This column will display only on mobile -->
+                    <div class="column is-4 is-offset-1 is-hidden-tablet is-hidden-desktop">
+                        <!-- Title -->
+                        <div class="icon-subtitle"><i class="im im-icon-Speach-Bubble3"></i></div>
+                        <div class="title quick-feature has-numbers text-bold">
+                            <h2>Full Automations</h2>
+                        </div>
+                        <div class="title-divider is-small"></div>
+                        <span class="body-text"> We help you streamline your day-to-day processes with our cloud solutions, 
+                        and keep cases organized so you can focus on billable work 
+                        and growing your revenue.</span>
+                        <div class="pt-10 pb-10">
+                            <a href="#" class="button btn-align btn-more is-link color-primary">
+                                Learn more <i class="sl sl-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /so the original floww is kept -->
+                    <div class="column is-6">
+                    <img class="featured-image-medium" src="{{ url_for('static', filename='img/graphics/compositions/videoconference-feature-2-core.svg') }}" data-base-url="img/graphics/compositions/videoconference-feature-2" data-extension=".svg" alt="">
+                       
+                    </div>
+                    <!-- This column will display only on desktop and tablet landscape resolutions -->
+                    <div class="column is-4 is-offset-1 is-hidden-mobile">
+                        <!-- Title -->
+                        <div class="icon-subtitle"><i class="im im-icon-Speach-Bubble3"></i></div>
+                        <div class="title quick-feature has-numbers text-bold">
+                            <h2>Full Automation</h2>
+                        </div>
+                        <div class="title-divider is-small"></div>
+                        <span class="body-text">We help you streamline your day-to-day processes with our cloud solutions, 
+                        and keep cases organized so you can focus on billable work 
+                        and growing your revenue</span>
+                        <div class="pt-10 pb-10">
+                            <a href="#" class="button btn-align btn-more is-link color-primary">
+                                Learn more <i class="sl sl-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /so the original flow is kept -->
+                </div>
+
+                <div class="columns is-vcentered pb-40 pt-40">
+                    <div class="column is-4 is-offset-1">
+                        <!-- Title -->
+                        <div class="icon-subtitle"><i class="im im-icon-Lock"></i></div>
+                        <div class="title quick-feature has-numbers text-bold">
+                            <h2>Faster Deals</h2>
+                        </div>
+                        <div class="title-divider is-small"></div>
+                        <span class="body-text">
+                        Accommodate your clients with flexible e-signatures, online payments, and more. 
+                        we helps you with the moving parts of case management, so you can focus on your clients.
+                        
+                        </span>
+                        <div class="pt-10 pb-10">
+                            <a href="#" class="button btn-align btn-more is-link color-primary">
+                                Learn more <i class="sl sl-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column is-6 is-offset-1">
+                    <img class="featured-image-medium" src="{{ url_for('static', filename='img/graphics/compositions/videoconference-feature-4-core.svg') }}" data-base-url="img/graphics/compositions/videoconference-feature-4" data-extension=".svg" alt="">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+   <!-- <div class="section">
+        <div class="container">
+            <!-- Title
+            <div class="section-title-wrapper has-text-centered pt-40 pb-40">
+                <h2 class="section-title-landing">
+                    An Incredible Experience
+                </h2>
+                <h4>You won't be able to go back after this one.</h4>
+            </div>
+
+            <!--Mockup
+            <div class="mockup-wrap">
+                <div class="image-wrap">
+                <img class="featured-image-medium" src="" >
+
+                    <img class="full-image" src="{{ url_for('static', filename='img/graphics/apps/app-videoconference-core.png') }}" data-base-url="assets/img/graphics/apps/app-videoconference" data-extension=".png" alt="">
+
+                    <div class="columns is-multiline app-features">
+                        <div class="column is-6">
+                        
+                            <div class="content content-flex">
+                                <div class="dark-text">
+                                    <i class="im im-icon-Video-5 is-size-2 color-primary"></i>
+                                </div>
+                                <div class="dark-text has-text-left ml-30">
+                                    <h5 class="text-bold">Fast stream</h5>
+                                    <p>Lorem ipsum dolor sit amet, ea vis numquam vivendo, voluptua argumentum an pri. Duo
+                                        illud consequat in, eum eu veri ipsum oporteat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-6">
+                 
+                            <div class="content content-flex">
+                                <div class="dark-text">
+                                    <i class="im im-icon-Credit-Card2 is-size-2 color-primary"></i>
+                                </div>
+                                <div class="dark-text has-text-left ml-30">
+                                    <h5 class="text-bold">Payment ready</h5>
+                                    <p>Lorem ipsum dolor sit amet, ea vis numquam vivendo, voluptua argumentum an pri. Duo
+                                        illud consequat in, eum eu veri ipsum oporteat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-6">
+                 
+                            <div class="content content-flex">
+                                <div class="dark-text">
+                                    <i class="im im-icon-Lock is-size-2 color-primary"></i>
+                                </div>
+                                <div class="dark-text has-text-left ml-30">
+                                    <h5 class="text-bold">Roles management</h5>
+                                    <p>Lorem ipsum dolor sit amet, ea vis numquam vivendo, voluptua argumentum an pri. Duo
+                                        illud consequat in, eum eu veri ipsum oporteat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-6">
+                       
+                            <div class="content content-flex">
+                                <div class="dark-text">
+                                    <i class="im im-icon-Video is-size-2 color-primary"></i>
+                                </div>
+                                <div class="dark-text has-text-left ml-30">
+                                    <h5 class="text-bold">On-Demand mode</h5>
+                                    <p>Lorem ipsum dolor sit amet, ea vis numquam vivendo, voluptua argumentum an pri. Duo
+                                        illud consequat in, eum eu veri ipsum oporteat.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-cta has-text-centered pb-40">
+                        <a href="#" class="button button-cta primary-btn">Start my Free Trial</a>
+                        <p>No credit card required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Services 
+    <div class="section is-app-grey">
+        <div class="container">
+            
+            <div class="section-title-wrapper has-text-centered pt-40 pb-40">
+                <h2 class="section-title-landing">
+                    Multiple Benefits.
+                </h2>
+                <h4>Don't waste your time anymore</h4>
+            </div>
+
+            <div class="content-wrapper hover-cards">
+            
+                <div class="columns is-vcentered">
+                    <div class="column is-10 is-offset-1">
+                        <div class="columns is-vcentered">
+                            <div class="column is-6">
+                          
+                                <div class="flex-card icon-card-hover first-card light-bordered">
+                                    <h3 class="card-title is-clean">
+                                        Learn Faster
+                                    </h3>
+                                    <p class="card-description">Lorem ipsum dolor sit amet, vim quidam blandit voluptaria
+                                        no, has eu lorem convenire incorrupte.</p>
+                                </div>
+                            
+                                <div class="flex-card icon-card-hover second-card light-bordered">
+                                    <h3 class="card-title is-clean">
+                                        Learn Best Practices
+                                    </h3>
+                                    <p class="card-description">Lorem ipsum dolor sit amet, vim quidam blandit voluptaria
+                                        no, has eu lorem convenire incorrupte.</p>
+                                </div>
+                            </div>
+                            <div class="column is-6">
+                           
+                                <div class="flex-card icon-card-hover third-card light-bordered">
+                                    <h3 class="card-title is-clean">
+                                        Experiment Peer Review
+                                    </h3>
+                                    <p class="card-description">Lorem ipsum dolor sit amet, vim quidam blandit voluptaria
+                                        no, has eu lorem convenire incorrupte.</p>
+                                </div>
+                    
+                                <div class="flex-card icon-card-hover fourth-card light-bordered">
+                                    <h3 class="card-title is-clean">
+                                        Grow your skills
+                                    </h3>
+                                    <p class="card-description">Lorem ipsum dolor sit amet, vim quidam blandit voluptaria
+                                        no, has eu lorem convenire incorrupte.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-wrap has-text-centered is-title-reveal">
+                    <a href="kit2-signup.html" class="button button-cta is-rounded btn-align raised primary-btn raised">
+                        Start your Free Trial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+    <!-- Testimonials -->
+    <div id="card-testimonials" class="section">
+        <div class="container">
+
+            <!-- Title -->
+            <div class="section-title-wrapper has-text-centered pt-40 pb-40">
+                <h2 class="section-title-landing">
+                    Our customers speak
+                </h2>
+                <h3 class="section-subtitle-alt">Read what they say about us</h3>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="columns is-vcentered">
+                    <div class="column is-hidden-mobile"></div>
+                    <div class="column is-10">
+                        <div class="columns is-vcentered">
+                            <div class="column is-6">
+                                <div class="flex-card testimonial-card light-bordered light-raised padding-20">
+                                    <div class="testimonial-title">
+                                        Amazed by the product
+                                    </div>
+                                    <div class="testimonial-text">
+                                       with brvcase realestate, we have been able to automate our 
+                                       client billings, manage all our estates on a spot with realtime notifications.
+                                    </div>
+                                    <div class="user-id">
+                                        
+                                        <div class="info">
+                                            <div class="name">Dan Shwartz</div>
+                                            <div class="position">Software engineer</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-card testimonial-card light-bordered light-raised padding-20">
+                                    <div class="testimonial-title">
+                                        My tasks are now painless
+                                    </div>
+                                    <div class="testimonial-text">
+                                    my teams manage tasks, allocated to them with our single organisantion clooud Storage,
+                                    our events and calender show us timeline of schedules as they are happening. 
+                                      
+                                    </div>
+                                    <div class="user-id">
+                                        
+                                        <div class="info">
+                                            <div class="name">Jane Guzmann</div>
+                                            <div class="position">CFO</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-6">
+                                <div class="flex-card testimonial-card light-bordered light-raised padding-20">
+                                    <div class="testimonial-title">
+                                       This is Excellent Tools!
+                                    </div>
+                                    <div class="testimonial-text">
+                                        In the past, if a client wanted to hire us it would take a day, to a week. 
+                                        With brvcase it takes 10 minutes
+                                    </div>
+                                    <div class="user-id">
+                                        
+                                        <div class="info">
+                                            <div class="name">kiisha Morgan</div>
+                                            <div class="position">Accountant</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-card testimonial-card light-bordered light-raised padding-20">
+                                    <div class="testimonial-title">
+                                        Our expatriates are Happy
+                                    </div>
+                                    <div class="testimonial-text">
+                                        With brvcase immigration, we are able easily onbooard new expatriates, keep track of their
+                                        important documents and manage birthday, anniversary with other important dates.
+                                    </div>
+                                    <div class="user-id">
+                                        
+                                        <div class="info">
+                                            <div class="name">Anthony Leblanc</div>
+                                            <div class="position">Founder at Hereby</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="column is-hidden-mobile"></div>
+                </div>
+
+                <div class="grid-clients three-grid mt-60 mb-60">
+                    <div class="columns is-vcentered">
+                        <div class="column"></div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/systek.svg" alt=""></a>
+                        </div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/phasekit.svg" alt=""></a>
+                        </div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/grubspot.svg" alt=""></a>
+                        </div>
+                        <div class="column"></div>
+                    </div>
+                    <div class="columns is-vcentered is-separator">
+                        <div class="column"></div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/tribe.svg" alt=""></a>
+                        </div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/kromo.svg" alt=""></a>
+                        </div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/covenant.svg" alt=""></a>
+                        </div>
+                        <div class="column"></div>
+                    </div>
+                    <div class="columns is-vcentered is-separator">
+                        <div class="column"></div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/infinite.svg" alt=""></a>
+                        </div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/gutwork.svg" alt=""></a>
+                        </div>
+                        <div class="column">
+                            <a><img class="client" src="static/assets/img/logos/custom/proactive.svg" alt=""></a>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
+ 
+    </div> <!-- Bulchat Button -->
+    <div id="bulchat" class="open">
+        <div class="chat-button open g-item"></div>
+    </div> <!-- Chat widget -->
+    <div id="chat-widget">
+        <div class="chat-widget-body is-closed">
+            <div class="chat-header">
+                <div class="close-chat is-hidden-desktop is-hidden-tablet"><img src="static/assets/img/graphics/legacy/close-small.svg" alt=""></div>
+                <div class="chat-team">
+                    <div class="team-member has-text-centered">
+
+                        <div class="is-handwritten">Alan maynard</div>
+                    </div>
+                </div>
+                <div class="response-delay has-text-centered">
+                    Answers in less than 18 hours
+                </div>
+            </div>
+            <div class="message-container">
+                <div class="divider">
+                    <span class="before-divider"></span>
+                    <div class="children">Today</div>
+                    <span class="after-divider"></span>
+                </div>
+                <div class="chat-message from">
+                    
+                    <div class="bubble-wrapper">
+                        <div class="timestamp">02:49 pm</div>
+                        <div class="chat-bubble">
+                            Hey iam Alan ! Iam here to help. What can i do for you ?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-message to">
+                    <div class="bubble-wrapper">
+                        <div class="timestamp">02:48 pm</div>
+                        <div class="chat-bubble">
+                            Hello, someone out there ? I could use some help
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="message-input">
+                <textarea class="" rows="1" placeholder="Send a message ..."></textarea>
+                <div class="message-options">
+                    <div class="emoji-button"></div>
+                    <div class="attach-button"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Chat widget -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+
+{% endblock %}

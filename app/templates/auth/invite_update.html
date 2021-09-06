@@ -1,0 +1,182 @@
+﻿{% import "bootstrap/utils.html" as utils %}
+{% extends "layout.html" %}
+{% block title %}Welcome to brvcase {% endblock %}
+{% block body %}
+
+<body class="is-theme-core">
+    <div class="pageloader"></div>
+    <div class="infraloader is-active"></div>
+    <div class="hero is-app-grey is-fullheight" data-switcher-visible="">
+
+       
+        <!-- Hero image -->
+        
+     <div class="section">
+        
+           
+        </div>
+
+        <div class="columns is-vcentered">
+            <div class="column is-4 is-offset-4">
+                <div class="info-block">
+                    <span class="tag is-info"> Role: {{user.role.name}}</span>
+                    <h4>Welcome to {{user.chamber.company}} </h4>
+                    <p>
+                        Your great Company  has invited you to join the team on brvcae.
+                       <br> Take 2 minutes to complete your details and activate your account
+                    </p>
+                </div>
+            </div>
+        </div>
+      
+            <div class="columns is-vcentered">
+            <div class="column is-6 is-offset-3">
+                <div class="flex-card light-bordered light-raised">
+                    <div class="card-body">
+                        <div class="pb-20">
+                            <h3 class="title is-4 is-styled">Profile Setup</h3>
+                        </div>
+                        <form action="" method="post" class="form" role="form"  enctype="multipart/form-data">
+                            <div class="columns pt-10">
+                                <div class="column">
+                                    <div class="field">
+                                        <div class="control">
+                                            <label>First Name</label>
+                                            <input name="first_name" class="input is-medium mt-5" type="text" data-dashlane-rid="be78193fcb41b7fb" data-form-type="other">
+                                        </div>
+                                        <div class="field">
+                                       <div class="control">
+                                            <label>Last Name</label>
+                                            <input name="last_name" class="input is-medium mt-5" type="text" data-dashlane-rid="be78193fcb41b7fb" data-form-type="other">
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="control">
+                                            <label>Gender</label>
+                                            <div class="mt-5"></div>
+                                            <select class="chosen-select" data-placeholder="Gender" name="gender" >
+                                                
+                                                <option>Female</option>
+                                                <option>Male</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                     
+                                    <div class="field">
+                                        <div class="control">
+                                            <label style = "color:white;">password </label>
+                                            
+                                            <input name="password" 
+                                            class="input is-medium mt-5" 
+                                            data-dashlane-rid="f14bf77637e11efa" 
+                                            data-form-type="other" style="color:primary;"
+                                            type="password"
+                                            name="password" 
+                                            id = "password"
+                                            required="required"
+                                            placeholder = "Enter your password">
+                                        </div>
+                                        </div>
+                                    
+                                </div>
+                         
+
+
+                                <div class="column">
+                                  
+                                    <div class="field">
+                                        <div class="control">
+                                            <label>Birthday</label>
+                                            <input name="birthday" class="input is-medium mt-5" type="date" data-dashlane-rid="f14bf77637e11efa" data-form-type="other">
+                                        </div>
+                                    </div>
+
+                                        <div>
+                                        <div class="field">
+                                        <div class="control">
+                                        <label>prefered Username</label>
+                                        <input name="username" 
+                                        class="input is-medium mt-5" 
+                                        type="text" data-dashlane-rid="f14bf77637e11efa" 
+                                        data-form-type="other">
+                                        </div>
+                                        </div>
+                                        </div>
+                        
+                                        <div class="column">
+                                        <div class="field">
+                                        <div class="control">
+                                         <label>profile pictures</label>
+                                        <input name="image_file" class="input is-medium mt-5" 
+                                        type="file" data-dashlane-rid="f14bf77637e11efa"                                         
+                                        data-form-type="other">
+                                        </div>
+                                        </div>
+                                        </div>
+  
+                                    <div class="column">
+                                    <div class="field">
+                                        <div class="control">
+                                     <input name="confirm_password" 
+                                     class="input is-medium mt-5" 
+                                     data-dashlane-rid="be78193fcb41b7fb" 
+                                     data-form-type="other"
+                                     type="password" 
+                                    required="required" 
+                                    id="password_confirm" 
+                                    oninput="check(this)"
+                                    name = "confirm_password"
+                                     placeholder="confirm password">
+                                        </div>
+                                        <div class="column">
+                                
+                                        </div>
+
+            <script language='javascript' type='text/javascript'>
+                     function check(input) {
+                 if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+                 } else {
+            // input is valid -- reset the error message
+                    input.setCustomValidity('');
+         }
+    }
+</script>
+                              
+                            <div class="has-text-right">
+                                <button class="button is-light button-cta is-bold no-lh" data-dashlane-rid="6a480fabf95c0499" data-dashlane-label="true" data-form-type="other">
+                                    Cancel
+                                </button>
+                                <button 
+                                class="  button  btn-align   button-cta  is-bold  no-lh  raised  primary-btn" 
+                                data-dashlane-rid="a587e4aaccdf3290" 
+                                data-dashlane-label="true" 
+                                data-form-type="action"
+                                type="submit">
+                                    Create
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    
+        
+    <!-- /Side navigation -->
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
+    
+    </div> <!-- Bulchat Button -->
+    <div id="bulchat" class="open">
+        <div class="chat-button open g-item"></div>
+    
+         
+        </div>
+    </div>
+    {% endblock %}

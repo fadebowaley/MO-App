@@ -1,0 +1,282 @@
+{% import "bootstrap/utils.html" as utils %} 
+{% extends "base.html" %} 
+{% block title %}Files{% endblock %} 
+{% block body %}
+<!-- Page Wrapper -->
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    {% import "bootstrap/utils.html" as utils %}
+		{% import "bootstrap/wtf.html" as wtf %}
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="page-title">{{title}}</h3>
+          {{ utils.flashed_messages() }}
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Attendance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+	 {% if data is defined %}
+        <p>Received data: {{ data }}</p>
+    {% endif %}
+    <div class="row">
+	{# Show folder #}
+	
+      <div class="col-md-4">
+        <div class="card punch-status">
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              Volume <small class="text-muted">Folder</small>
+            </h5>
+			
+            <div class="punch-hours">
+				
+              <span>{{folder.folder_size}}</span>
+			 
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card punch-status">
+          <div class="card-body">
+            <h5 class="card-title">
+              Folder <small class="text-muted">Details</small>
+            </h5>
+
+            <div class="punch-btn-section">
+				<div class="stats-box">
+					<span>{{folder.folder_name}} </span>
+				</div>
+             </div>
+            <div class="statistics">
+              <div class="row">
+                <div class="col-md-6 col-6 text-center">
+                  <div class="stats-box">
+                    <p>Break</p>
+                    <h6>1.21 hrs</h6>
+                  </div>
+                </div>
+                <div class="col-md-6 col-6 text-center">
+                  <div class="stats-box">
+                    <p>Overtime</p>
+                    <h6>3 hrs</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card punch-status">
+          <div class="card-body">
+            <h5 class="card-title">
+              Timesheet <small class="text-muted">11 Mar 2019</small>
+            </h5>
+
+            <div class="punch-btn-section">
+             <a href="#" data-toggle="modal" data-target="#add_employee"><button type="button" class="btn btn-primary punch-btn">
+                Add new File
+              </button>  </a>
+            </div>
+            <div class="statistics">
+              <div class="row">
+                <div class="col-md-6 col-6 text-center">
+                  <div class="stats-box">
+                    <p>Break</p>
+                    <h6>1.21 hrs</h6>
+                  </div>
+                </div>
+                <div class="col-md-6 col-6 text-center">
+                  <div class="stats-box">
+                    <p>Overtime</p>
+                    <h6>3 hrs</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  
+    </div>
+	
+
+
+{% if not folder %}n
+<p>Could not find folder  details</p>
+            {% else %}
+						<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+							<table class="table table-striped custom-table mb-0 datatable">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Employee ID</th>
+											<th>Email</th>
+											<th>Mobile</th>
+											<th class="text-nowrap">Join Date</th>
+											<th>Role</th>
+											<th class="text-right no-sort">Action</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+
+									 {% for file in folder.files %}
+									<tr>
+											<td>
+												<!-- working on the file extension-->
+											<a href="#"  class="fa fa-file-pdf-o"> </i></a>
+																								
+											</td>
+											<td>{{file.id}}</td>
+											<td>{{file.file_document}}</td>
+											<td>{{file.tags}}</td>
+											<td>{{file.ext}}</td>
+											<td>{{file.date_created}}</td>
+											<td>
+												<div class="">
+													<a href="/static/cabinet/{{folder.folder_name}}/{{file.file_document}}" class="btn btn-white btn-sm btn-rounded "  aria-expanded="false">Download </a>
+											</div>
+											</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#add_employee"><i class="fa fa-pencil m-r-5"></i> add file</a>
+														<a class="dropdown-item" 
+														href="{{ url_for('admin.delete_files', id=file.id) }}" 
+														data-toggle="modal" 
+														data-target="#delete_employee">
+														<i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+									
+								</table>
+							</div>
+						
+						</div>
+					</div>
+
+	
+             
+				<!-- /Page Content -->
+				
+				
+				<!-- Delete Employee Modal -->
+				<div class="modal custom-modal fade" id="delete_employee" role="dialog">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-header">
+									<h3>Delete </h3>
+									<p>Are you sure want to delete?</p>
+								</div>
+								<div>
+								
+								</div>
+                
+								<div class="modal-btn delete-action" >
+									<div class="row">
+										<div class="col-6">
+                      {%for file in folder.files%}
+											<form method="POST" 
+											action="{{ url_for('admin.delete_files', id=file.id) }}">
+									{% endfor %}
+								<input type="submit" value="Confirm Delete" class="btn btn-primary continue-btn">
+
+								</form>
+											
+										</div>
+
+										<div class="col-6">
+											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+										</div>
+									</div>
+								</div>
+                
+							</div>
+          
+						</div>
+					</div>
+				</div>
+				
+				<!-- /Delete Employee Modal -->
+        <!-- Add file to Folder Modal-->
+        				<!-- Add Employee Modal -->
+				<div id="add_employee" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered ">
+						<div class="modal-content col-md-9" >
+							<div class="modal-header">
+								<h5 class="modal-title">Add Files</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>              
+							<div class="modal-body ">                
+								<form method="POST" action="{{ url_for('admin.save_file', id=folder.id) }}" enctype="multipart/form-data">                 
+                  					<div class="form-group">
+										<label>Upload your File</label>
+										<div class="custom-file">
+											<input type="file" name="file_document" class="custom-file-input" id="cv_upload">
+											<label class="custom-file-label" for="cv_upload">Choose file</label>
+										</div>
+									</div>
+										
+              <div class="form-group">
+                  <label for="tags"></label>
+                  <select class="form-control" id="tags" name="tags">
+                    <option>---Select Tags---</option>
+                    <option>Office Case</option>
+                    <option>immigration</option>
+                    <option>Litigation</option>
+                    <option>Property</option>
+                    <option>Probate</option>
+                    <option>Entertainment</option>
+                  </select>
+                </div>
+                
+											<div class="form-group ">
+												<label class="col-form-label">Description</label>
+												<input class="form-control" type="textArea" name="desc">
+											</div>
+                      
+
+                      <div class="submit-section">
+										<button class="btn btn-primary submit-btn" type="submit" value="Submit">Submit</button>
+									</div>
+								
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add Employee Modal -->
+
+        <!-- /Add file to Folder Modal-->
+
+        
+
+
+			{% endif %}
+            </div>
+			<!-- /Page Wrapper -->			
+        </div>
+<!-- /Main Wrapper -->
+
+{% endblock %}

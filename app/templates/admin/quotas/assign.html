@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+{% block title %} Assign Expatriates {% endblock %}
+{% block body %}
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<style>
+    label{
+      display: None;
+    }
+    </style> 
+
+    {% import "bootstrap/utils.html" as utils %}
+    {% import "bootstrap/wtf.html" as wtf %}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Expatriates Positions </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin Only</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <div class="row">
+         {{ utils.flashed_messages() }}
+            <div class="col-md-7 offset-3">
+                <div class="card">
+                <form action="" method="post" enctype="multipart/form-data" class="form" role="form">
+                            
+                    <div class="card-header">
+                    {{ form.csrf_token }}
+                    
+                      <h4 class="card-title mb-0 text-center">Select Expatriates for below position: </h4><br>
+                      <h2 class ="text-center"><span class="badge bg-inverse-success "> {{ lap.runner_name}}</span> </h2>
+             
+                    <div class="card-body">                        
+                        {%if lap.employee.first_name %}
+                          <div class="form-group row">                                                      
+                                    <div class="col-lg-9">
+                                            {{ lap.employee.first_name}} {{lap.employee.last_name}}
+                                            {% else %}
+                                             {% endif %}                                           
+                                            </div>
+                                     </div>
+                                        <div class="form-group row text-center">
+                                        <div class="col-lg-7 offset-2">
+                                        {{ wtf.form_field(form.employee, class='form-control') }}
+                                          </div>
+                                   </div>
+
+                                   <div class="text-center form-group">
+                                    <button type="submit" class="btn btn-primary">Add Employee </button>
+                                </div>
+                            </div>
+        
+                        </form>
+                    </div>
+                </div>
+   
+
+            </div>
+        </div>
+    
+    </div>			
+</div>
+<!-- /Main Wrapper -->
+
+{% endblock %}

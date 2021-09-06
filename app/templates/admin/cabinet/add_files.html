@@ -1,0 +1,124 @@
+
+{% extends "base.html" %}
+{% block title %}Role{% endblock %}
+{% block body %}
+
+{% import "bootstrap/utils.html" as utils %}
+   
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">New Folder </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin Only</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title mb-0">Add New File</h4> 
+                    </div>
+                    {{ utils.flashed_messages() }}
+                    <div class="card-body">
+                       
+                        <form action="{{ url_for('admin.save_file', id=folder.id) }}" method="POST" enctype="multipart/form-data class="form" role="form">
+                        
+                         <div class="form-group">
+										<label>Upload your File</label>
+										<div class="custom-file">
+											<input type="file" name="file_document" class="custom-file-input" id="cv_upload">
+											<label class="custom-file-label" for="cv_upload">Choose file</label>
+										</div>
+									</div>
+										
+              <div class="form-group input-group mb-3 input-group-prepend">
+                  <label class="input-group-text" for="tags">Select Tags</label>
+                  <select class="form-control custom-select" id="tags" name="tags">
+                    <option selected>Choose...</option>
+                    <option>Office Case</option>
+                    <option>immigration</option>
+                    <option>Litigation</option>
+                    <option>Property</option>
+                    <option>Probate</option>
+                    <option>Entertainment</option>
+                  </select>
+                </div>
+                
+											<div class="form-group  input-group-prepend">
+												<label class="col-form-label input-group-text">Description</label>
+												<input class="form-control" type="textArea" name="desc">
+											</div>
+
+
+
+                      <div class="submit-section">
+										<button class="btn btn-primary submit-btn" name="submit" type="submit" value="Submit">Submit</button>
+									</div>
+								
+                    </div>
+                </div>
+   
+
+            </div>
+        </div>
+    
+    </div>			
+</div>
+<!-- /Main Wrapper -->
+
+{% endblock %} 
+
+
+
+
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="media">
+        <!doctype html>
+        <html>
+          <head>
+            <title>File Upload</title>
+          </head>
+          <body>
+              <div>
+            <h1>File Upload</h1>
+            <form method="POST" action="" enctype="multipart/form-data">
+           <p><input type="file" name="file_document"></p>         
+           <p><input type="text" name="tags"></p>
+          
+            <p><input type="submit" value="Submit"></p>
+            </form>
+
+
+            <hr>) }
+            {% for file in files %}
+              <img src="{{ url_for('admin.save_file', filename=file_document) }}" style="width: 64px">
+            {% endfor %}
+          
+   
+      
+    </div>
+
+    
+</div>
+    <!-- /Page Wrapper -->
+    
+    </div>
+    <!-- /Main Wrapper -->
+        </body>
+        </html>

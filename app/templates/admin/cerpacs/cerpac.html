@@ -1,0 +1,112 @@
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Cerpac{% endblock %}
+{% block body %}
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+<!--<style>
+    label{
+      display: None;
+    }
+    </style> -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    {{ utils.flashed_messages() }}  
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title">Cerpac Form</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Official</a></li>
+                        <li class="breadcrumb-item active">Admin Only Form</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        {% import "bootstrap/utils.html" as utils %}
+		{% import "bootstrap/wtf.html" as wtf %}
+        <div class="row">
+        <div class="col-auto float-right ml-auto ">
+       
+         </div>
+        <div class="col-md-12">
+
+                <div class="card mb-0">
+                    
+                                        <!-- The beginning of passport Form-->
+                                        <div class="card-body">
+                                            {{ utils.flashed_messages() }}
+                                             <form action="" method="post" class="form" role="form">
+                                                {{ form.csrf_token() }}
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.ccn_number, class='form-control')}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.cerpac_serial_no, class='form-control')}}
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                    
+                                                     </div>
+                                                    <div class="col-xl-6">
+                                                        <div class="row">
+                                                               <div class="col-lg-9">
+                                                                                                
+                                                            </div>
+                                                            
+                                                            <div class="form-group row">
+                                                              
+                                                        </div>
+                    
+                                                        
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.cerpac_issue_date, class='form-control' )}}
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.expired_date, class='form-control' )}}
+                                                            </div>
+                                                        </div>
+
+                                                       
+                                                    
+                                                </div>
+                                                
+                    
+                                               
+                    
+                                        </div>
+                                                <div class="text-right form-group">
+                                                    <button type="submit" class="btn btn-primary">Add Cerpac</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>			
+                    </div>
+                    <!-- /Main Wrapper -->
+                    
+                    </div>
+                    <!-- /Main Wrapper -->
+
+                    
+{% endblock %}

@@ -1,0 +1,130 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+                <div class="row align-items-center">
+                <div class="col">
+                  <br>  {{ utils.flashed_messages() }} 
+                    <h3 class="page-title">{{ title }} </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin Only</li>  
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_employee') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Expatriates</a>
+                    <div class="view-icons">
+                        <a href="{{ url_for('admin.list_expart_view') }}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                        <a href="{{ url_for('admin.list_expatriates') }}" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee ID</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee Name</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Mobile Number</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+            </div>     
+        </div>
+        <!-- /Search Filter -->
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    {% if employees %}
+                    <table class="table table-striped custom-table datatable">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>ID No</th>
+                                <th>Email</th>
+                                <th class="text-nowrap">Date Joined</th>
+                                <th>Role</th>
+                                <th>Department</th>
+
+                                <th class="text-right no-sort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for employee in employees %}
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="#" class="avatar"><img alt="" src="/static/passports/{{employee.passport_pic }}"></a>
+                                        <a href="#"> {{  employee.first_name }}  {{  employee.last_name }}  <span>Quota Number</span></a>
+                                    </h2>
+                                </td>
+                                
+                                <td>{{ employee.employee_id }}</td>
+                                <td>{{ employee.email }}</td>
+                                <td>{{ employee.date_of_employment.strftime('%d %b, %Y') }} </td>
+                                {% if employee.role %}
+                                <td><a href="" class="btn btn-white btn-sm btn-rounded "  aria-expanded="false"></a>{{ employee.role.name }}  </td> 
+                                {%else%}    
+                                <td>assign Role</td>
+                                {% endif %}
+
+                                {% if employee.department %}
+                                <td>{{ employee.department.name }}</td> 
+                                {%else%}    
+                                <td>assign Department</td>
+                                {% endif %}
+                                <td><a href="{{ url_for('admin.edit_employee', id=employee.id) }}" class="btn btn-warning btn-rounded ">edit</a>  </td>
+                                <td><a href="{{ url_for('admin.assign_employee', id=employee.id) }}" class="btn btn-success btn-rounded ">Assign</a> </td>
+                                <td><a href="{{ url_for('admin.show_employee', id=employee.id) }}" class="btn btn-success btn-rounded ">View</a>  </td>   
+                                <td><a href="{{ url_for('admin.delete_employee', id=employee.id) }}" class=" btn btn-danger  btn-rounded " >Delete</a> </td>
+                     
+                            </tr>
+                            {% endfor %}
+                            
+                                
+                        </tbody>
+                    </table>
+
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Page Content -->
+    
+    <!-- Add Employee Modal -->
+   
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

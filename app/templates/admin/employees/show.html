@@ -1,0 +1,155 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block body %}
+
+ <!-- Page Wrapper -->
+ <div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ utils.flashed_messages() }}    
+                    <h3 class="page-title">{{title}} </h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Admin</li>
+                    </ul>
+                </div>
+                <div class="view-icons">
+                    <a href="{{ url_for('admin.list_expart_view') }}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+                    <a href="{{ url_for('admin.list_expatriates') }}" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
+                </div>
+                
+                <div class="col-auto float-right ml-auto">
+                    <a href="{{ url_for('admin.add_employee') }}"class="btn add-btn" ><i class="fa fa-plus"></i> Add Expatriates</a>
+                </div>
+                
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Leave Statistics -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Score Cards</h6>
+                    <h4>12 / 60</h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Expired Documents</h6>
+                    <h4>8 <span>Today</span></h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Active Documents</h6>
+                    <h4>0 <span>Today</span></h4>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-info">
+                    <h6>Grace Period</h6>
+                    <h4>12</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /Leave Statistics -->
+        
+        <!-- Search Filter -->
+        <div class="row filter-row">
+           <div class="col-sm-4 col-md-4">  
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating">
+                    <label class="focus-label">Employee Name</label>
+                </div>
+           </div>
+
+           <div class="col-sm-4 col-md-4">  
+            <div class="form-group form-focus">
+                <input type="text" class="form-control floating">
+                <label class="focus-label">Serial Number</label>
+            </div>
+       </div>
+          
+           <div class="col-sm-4 col-md-3">  
+                <a href="#" class="btn btn-success btn-block"> Search </a>  
+           </div>     
+        </div>
+        <!-- /Search Filter -->
+       
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        {% if employees %}
+                                        <table class="table table-striped custom-table mb-0 datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Employee Name</th>
+                                                    <th>Employee ID</th>
+                                                    <th>Position</th>
+                                                    <th>Email</th>                                        
+                                                    <th>Birthday</th>
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                           
+                                                 
+                                        {% for employee in employees %}
+                        
+                        <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a href="{{ url_for('admin.show_employee', id=employee.id) }}" class="avatar"><img alt="" src="/static/passports/{{employee.passport_pic }} "></a>
+                                    <a href="#"> </a>
+                                </h2>
+                            </td>
+                            <td>{{  employee.first_name }}  {{  employee.last_name }} </td>
+                            <td>{{  employee.expat_id }}</td>
+                            <td>{{ employee.laps.runner_name }} </td>
+                            <td >{{ employee.email }}  </td>
+                            <td><a href="" class="btn btn-white btn-sm btn-rounded ">{{ employee.get_bday }}  </a>  </td>
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="{{ url_for('admin.show_employee', id =employee.id) }}" ><i class="fa fa-pencil m-r-5"></i> View</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.add_cerpac', id=employee.id) }}" ><i class="fa fa-pencil m-r-5"></i> add cerpac</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.add_cerpac', id=employee.id) }}" ><i class="fa fa-pencil m-r-5"></i> add passport</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.add_cerpac', id=employee.id) }}" ><i class="fa fa-pencil m-r-5"></i> add contact</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.edit_employee', id=employee.id) }}" ><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item" href="{{ url_for('admin.resigned_employee', id=employee.id) }}" ><i class="fa fa-pencil m-r-5"></i> Retire</a>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                    </table>
+
+                    {% else %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Page Content -->
+    
+  
+   
+<!-- /Page Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}

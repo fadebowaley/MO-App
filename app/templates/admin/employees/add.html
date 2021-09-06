@@ -1,0 +1,194 @@
+
+{% extends "base.html" %}
+{% block title %}Employee{% endblock %}
+{% block body %}
+<!-- the Label of wtforms requires we hide some label fields for Ui Sake-->
+
+<style>
+
+.arin{
+     text-align: center;
+    display: flex;
+  justify-content: center;
+}
+
+.format{                        
+background-color: grey;
+padding-top:1px;
+padding-bottom:1px;
+}              
+
+.card{
+    background-color: none;
+}
+
+</style>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <h3 class="page-title"> Expatriates Form</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Official</a></li>
+                        <li class="breadcrumb-item active">Admin Only Form</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+               
+        
+        {% import "bootstrap/utils.html" as utils %}
+		{% import "bootstrap/wtf.html" as wtf %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-0">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0"></h4>
+                    </div>
+
+
+
+
+                    
+                    <!-- The beginning of Employee  Form-->
+                    <div class="card-body">
+                        {{ utils.flashed_messages() }}
+                         <form action="" method="post" enctype="multipart/form-data" class="form" role="form">
+                            {{ form.csrf_token() }}
+                            
+                            
+                            
+                            <div class="row">
+                    <div class="col-xl-6 card flex-fill">
+                                
+
+                                   <div class="form-group row">
+                                        <div class="col-lg-9">
+                                            {{ wtf.form_field(form.passport_pic, class='form-control')}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-9">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-9">
+                                            {{ wtf.form_field(form.first_name, class='form-control')}}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-9">
+                                            {{ wtf.form_field(form.last_name, class='form-control' )}}
+                                            
+                                        </div>
+                                    </div>
+                            
+
+                                                                                            <div class="form-group row">
+                                          <div class="col-lg-9">
+                                                         
+                                                            {{ wtf.form_field(form.gender, class='form-control' )}}
+                                                            </div>
+                                                          </div>
+
+                                    <div class="form-group row">
+                                            <div class="col-lg-9">
+                                                {{ wtf.form_field(form.phone_number, class='form-control', )}}
+                                        </div>
+                                    </div> 
+
+
+     <div class="form-group row">
+                                                            <div class="col-lg-9">
+                                                                {{ wtf.form_field(form.email, class='form-control' )}}
+                                                         </div>
+                                                     </div>  
+                                 </div>
+                                <div class="col-xl-6  card flex-fill">
+
+                                                          
+                                                                                             <div class="form-group row  ">
+                                    <div class="col-lg-9 card arin"                                
+									<span> {{ tickr }}Create new Employee Folder  </span>
+                                     
+										<div class="status-toggle arin">
+                                            <input type="checkbox" id="staff_module" class="check" name="create_folder">
+											<label for="staff_module" class="checktoggle">checkbox</label>
+                            </div>
+</div>
+
+                                </div>
+                                                       
+                                                         
+
+
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-9">
+                                                            {{ wtf.form_field(form.birthday, class='form-control' )}}
+                                                     </div>
+                                                 </div>
+                                    
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-9">
+                                            {{ wtf.form_field(form.date_of_employment, class='form-control' )}}
+                                        </div>
+                                    </div>
+
+
+                                   
+                                    
+                                    <div class="form-group row">
+                                        <div class="col-lg-9">
+                                       {{ wtf.form_field(form.city, class='form-control')}}
+                                     </div>
+                                 </div>
+
+                                 <div class="form-group row">
+                                    <div class="col-lg-9">
+                                   {{ wtf.form_field(form.state, class='form-control')}}
+                                 </div>
+                             </div>
+
+                             <div class="form-group row">
+                                <div class="col-lg-9">
+                                    {{ wtf.form_field(form.country, class='form-control' )}}
+
+                             </div>
+                         </div>
+
+                             
+                                </div>
+
+
+                            <div class="text-right form-group">
+                                <button type="submit" class="btn btn-primary">Add Expatriates</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>			
+</div>
+<!-- /Main Wrapper -->
+
+</div>
+<!-- /Main Wrapper -->
+
+
+{% endblock %}
