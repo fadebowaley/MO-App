@@ -50,7 +50,7 @@ def send_set_email(user):
 
 def send_invite_email(user):
         token = user.get_reset_token()
-        send_email(('Invitation to join {}  from {} {} '.format(current_user.chamber.company,  current_user.first_name, current_user.last_name  )),
+        send_email(('Invitation to join {}  from {} {} '.format(current_user.vendor.company,  current_user.first_name, current_user.last_name  )),
                sender = formataddr(('Brvcase - Invitation Card', current_app.config['ADMINS'][0] )), 
                recipients=[user.email],
                text_body=render_template('email/send_invite.txt', user=user, current_user=current_user, token=token, external=True),

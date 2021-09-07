@@ -93,12 +93,12 @@
                         </a>
                         {% endif %}
 
-                    {% if current_user.active == False and current_user.is_authenticated and current_user.role_id != None and current_user.chamber_id != None  %}
+                    {% if current_user.active == False and current_user.is_authenticated and current_user.role_id != None and current_user.vendor_id != None  %}
                            <a class="navbar-item is-slide" href="{{ url_for('auth.welcome_2fa') }}">
                            <span class="tag is-danger">  click here to activate your account </span>
                         </a>
 
-                    {% elif current_user.active == False and current_user.is_authenticated and current_user.role_id == None and current_user.chamber_id == None  %}
+                    {% elif current_user.active == False and current_user.is_authenticated and current_user.role_id == None and current_user.vendor_id == None  %}
                            <a class="navbar-item is-slide" href="{{ url_for('auth.welcome') }}">
                            <span class="tag is-info">  click here to set-up your account </span>
                         </a>

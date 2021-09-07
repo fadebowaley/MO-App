@@ -8,7 +8,7 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms.fields.html5 import DateTimeField, DateField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import ValidationError, DataRequired, Length
-from app.models import Chamber, Invoice, Account, Tax, Payment, Employee, Company
+from app.models import User
 
 
 

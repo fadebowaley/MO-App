@@ -4,10 +4,8 @@ from datetime import datetime, date
 from . import db
 from flask import current_app, render_template
 from .email import send_email, send_bday, send_anny, send_mkt, send_notification_report
-from .models import User, Employee, \
-Cerpac,  Company, Emergency,  \
-Passport, Quota, User, Token_serial, Lap, Renew, \
- Approve, Folder, File
+from .models import User
+
 
 
 

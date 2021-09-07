@@ -6,7 +6,7 @@ import emoji
 import pathlib
 from app.settings  import bp
 from app import db, session, sessionmaker
-from app.models import Chamber, User, Role, Permission
+from app.models import User
 from flask import abort, flash, redirect, render_template, \
 url_for, g, jsonify, current_app, request
 from flask_login import current_user, login_required
@@ -15,12 +15,12 @@ from pathlib import Path
 from PIL import Image
 from ..decorators import admin_required, permission_required, account_required,\
     manager_required, super_required
-from app.settings.forms import ChamberForm, RegistrationForm, UpdateAccountForm, ChamberModuleForm
+from app.settings.forms import VendorForm, RegistrationForm, UpdateAccountForm, VendorModuleForm
 from .email import  send_welcome_email, send_reset_email, send_confirmation_email
 
-@bp.app_context_processor
-def inject_permissions():
-    return dict(Permission=Permission)
+# @bp.app_context_processor
+# def inject_permissions():
+#     return dict(Permission=Permission)
 
 ALLOWED_EXTENSIONS = set(['.jpg', '.png', '.gif', '.pdf', '.csv', '.doc','docx', '.xls', '.xlsx','.txt' ])
 def allowed_file(filename):
@@ -37,30 +37,30 @@ def Accountid():
 
 
 #  We list here all Clients that has been setup
-@bp.route('/chamber/view', methods=['GET', 'POST'])
+@bp.route('/vendor/view', methods=['GET', 'POST'])
 @login_required
 @super_required
-def list_chambers():
+def list_vendors():
     if not current_user.role.permissions ==31:
         
-        chambers = Chamber.query.filter_by(id =current_user.chamber_id).all()
+        vendors = Vendor.query.filter_by(id =current_user.vendor_id).all()
     else:
-        chambers = Chamber.query.all()      
-    return render_template('settings/chamber/chambers.html',
-                           chambers=chambers, title="Customers Lists" )
+        vendors = Vendor.query.all()      
+    return render_template('settings/vendor/vendors.html',
+                           vendors=vendors, title="Customers Lists" )
     
     
     
-@bp.route('/chamber/add', methods=['GET', 'POST'])
+@bp.route('/vendor/add', methods=['GET', 'POST'])
 @login_required
 @super_required
 def company_settings():
-    # We create a chamber that house the operations this will be assigned to users
+    # We create a vendor that house the operations this will be assigned to users
     company_settings=True
-    form = ChamberForm()
+    form = VendorForm()
     if form.validate_on_submit():           
         if request.method == 'POST':       
-            chamber = Chamber(
+            vendor = Vendor(
             company_address=str(form.company_address.data).upper(),
             company=str(form.company.data).upper(),
             company_email=str(form.company_email.data).upper(), 
@@ -79,155 +79,155 @@ def company_settings():
                 #if logo_image and allowed_file(logo_image.filename) and form.company_name.data != "" and form.company_email.data != "":
                 filename = secure_filename(logo_file.filename)
                 logo_file.save(os.path.join(current_app.root_path,'static/logos', filename))
-                chamber.logo_file=filename                         
+                vendor.logo_file=filename                         
             try:        
-                db.session.add(chamber)
+                db.session.add(vendor)
                 db.session.commit()
                 # Send a Welcome Message to thee Contact Email
-                flash('You have successfully added {}' .format(chamber.company) )
+                flash('You have successfully added {}' .format(vendor.company) )
             except:
             
-                flash('Error: chamber name already exists.')
+                flash('Error: vendor name already exists.')
         
-        return redirect(url_for('settings.list_chambers'))
+        return redirect(url_for('settings.list_vendors'))
           
-    return render_template('settings/chamber/chamber.html',
+    return render_template('settings/vendor/vendor.html',
                             title="Company Settings", form=form)
     
     
-@bp.route('/chamber/edit/<int:id>', methods=['GET', 'POST'])
+@bp.route('/vendor/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 @super_required
 def edit_company_settings(id):
     company_settings = False
-    chamber = Chamber.query.get_or_404(id)
-    form = ChamberForm(obj=chamber)
+    vendor = Vendor.query.get_or_404(id)
+    form = VendorForm(obj=vendor)
     if form.validate_on_submit():     
         
-        chamber.company=form.company.data
-        chamber.company_address=form.company_address.data 
-        chamber.company_email=form.company_email.data
-        chamber.phone_number=form.phone_number.data
-        chamber.city=form.city.data
-        chamber.state=form.state.data
-        chamber.country=form.country.data
-        chamber.postal_code=form.postal_code.data
-        chamber.contact_person=form.contact_person.data
-        chamber.contact_phone=form.contact_phone.data
-        chamber.website=form.website.data
+        vendor.company=form.company.data
+        vendor.company_address=form.company_address.data 
+        vendor.company_email=form.company_email.data
+        vendor.phone_number=form.phone_number.data
+        vendor.city=form.city.data
+        vendor.state=form.state.data
+        vendor.country=form.country.data
+        vendor.postal_code=form.postal_code.data
+        vendor.contact_person=form.contact_person.data
+        vendor.contact_phone=form.contact_phone.data
+        vendor.website=form.website.data
         if request.method == 'POST':            
                 db.session.commit()
-                flash('You have successfully edited {}' .format(chamber.company))
+                flash('You have successfully edited {}' .format(vendor.company))
         
-        return redirect(url_for('settings.list_chambers'))
+        return redirect(url_for('settings.list_vendors'))
         form.company_name.data = company.company_name
         form.company_address.data = company.company_address
         form.company_email.data = company.company_email
         form.contact_number.data = company.contact_number
 
-    return render_template('settings/chamber/chamber.html', action="Edit",
+    return render_template('settings/vendor/vendor.html', action="Edit",
                             form=form,
-                           company_settings=company_settings, chamber=chamber, title="Edit Company")
+                           company_settings=company_settings, vendor=vendor, title="Edit Company")
 
 
-@bp.route('/chamber/delete/<int:id>', methods=['GET', 'POST'])
+@bp.route('/vendor/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 @super_required
 def delete_company_settings(id):
     """   Delete an company settings  from the company database """
-    chamber = Chamber.query.get_or_404(id)
-    check = User.query.filter_by(chamber_id=id).all()
+    vendor = Vendor.query.get_or_404(id)
+    check = User.query.filter_by(vendor_id=id).all()
     if check:
         flash('Company cannot be closed ! Please delete Users first')
-        return redirect(url_for('settings.list_chambers'))
-    db.session.delete(chamber)
+        return redirect(url_for('settings.list_vendors'))
+    db.session.delete(vendor)
     db.session.commit()
-    flash('You have successfully deleted {}' .format(chamber.company))
-    return redirect(url_for('settings.list_chambers'))
-    return render_template(title="Delete chamber")
+    flash('You have successfully deleted {}' .format(vendor.company))
+    return redirect(url_for('settings.list_vendors'))
+    return render_template(title="Delete vendor")
     
     
 # we create users and assigns them to different companies so that they can use the account separately
     
-@bp.route('/chamber/activations/<int:id>',  methods=['GET', 'POST'])
+@bp.route('/vendor/activations/<int:id>',  methods=['GET', 'POST'])
 @login_required
 @super_required
 def modules_roles_settings(id):
-    chamber = Chamber.query.get_or_404(id)
-    users = User.query.filter(User.chamber_id==id).all()
+    vendor = Vendor.query.get_or_404(id)
+    users = User.query.filter(User.vendor_id==id).all()
 
     if request.method == 'POST':
         # Below form activate immigration module
         if request.form['submit_button'] == 'i-active':                        
-            if chamber.is_immigration != 1:
-                chamber.is_immigration = 1
+            if vendor.is_immigration != 1:
+                vendor.is_immigration = 1
                 flash('immigration module activated !')
             else:
-                chamber.is_immigration = 0
+                vendor.is_immigration = 0
                 flash('immigration deactivated !')
             db.session.commit() 
             
             # This form will activate realestate module  
         elif request.form['submit_button'] == 'r-active':            
-            if chamber.is_realestate != 1:
-                chamber.is_realestate = 1
+            if vendor.is_realestate != 1:
+                vendor.is_realestate = 1
                 flash('realestate module activated !')
             else:
-                chamber.is_realestate = 0
+                vendor.is_realestate = 0
                 flash('realestate deactivated !')
             db.session.commit()   
         # This form will activate entertainment module  
         elif request.form['submit_button'] == 'e-active':            
-            if chamber.is_entertainment != 1:
-                chamber.is_entertainment = 1
+            if vendor.is_entertainment != 1:
+                vendor.is_entertainment = 1
                 flash('entertainment module activated !')
             else:
-                chamber.is_entertainment = 0
+                vendor.is_entertainment = 0
                 flash('entertainment deactivated !')
             db.session.commit()
          
         # This form will activate intellectual property    
         elif request.form['submit_button'] == 'I-active':            
-            if chamber.is_Iproperty != 1:
-                chamber.is_Iproperty = 1
+            if vendor.is_Iproperty != 1:
+                vendor.is_Iproperty = 1
                 flash('entertainment module activated !')
             else:
-                chamber.is_Iproperty = 0
+                vendor.is_Iproperty = 0
                 flash('entertainment deactivated !')
             db.session.commit()        
 
         # This form will activate Self Services        
         elif request.form['submit_button'] == 'S-active':            
-            if chamber.is_services != 1:
-                chamber.is_services = 1
+            if vendor.is_services != 1:
+                vendor.is_services = 1
                 flash('self-service module activated !')
             else:
-                chamber.is_services = 0
+                vendor.is_services = 0
                 flash('self-service deactivated !')
             db.session.commit()   
 
         # This form will activate Billings and Payment        
         elif request.form['submit_button'] == 'b-active':            
-            if chamber.is_Billings != 1:
-                chamber.is_Billings = 1
+            if vendor.is_Billings != 1:
+                vendor.is_Billings = 1
                 flash('Billings module activated !')
             else:
-                chamber.is_Billings = 0
+                vendor.is_Billings = 0
                 flash('Billings deactivated !')
             db.session.commit()  
              
         # This form will activate Billings and Payment        
         elif request.form['submit_button'] == 'p-active':            
-            if chamber.is_probate != 1:
-                chamber.is_probate = 1
+            if vendor.is_probate != 1:
+                vendor.is_probate = 1
                 flash('Probate module activated !')
             else:
-                chamber.is_probate = 0
+                vendor.is_probate = 0
                 flash('Probate deactivated !')
             db.session.commit()
 
     return render_template('settings/roles/roles-permission.html',                           
-       chamber=chamber, users=users, title="Module and Roles Activations" )
+       vendor=vendor, users=users, title="Module and Roles Activations" )
     
 
 
@@ -255,7 +255,7 @@ def create_user():
         email=form.email.data,
         password=form.password.data,
         role = form.role.data,
-        chamber = form.chamber.data)
+        vendor = form.vendor.data)
         db.session.add(user)
         db.session.commit()        
         token = user.get_confirmation_token()
@@ -277,8 +277,8 @@ def create_user():
 def add_user(id):
     """  Add a user to the database    """
     form = RegistrationForm()
-    # Get the Chamber id first
-    chamber = Chamber.query.get_or_404(id)
+    # Get the Vendor id first
+    vendor = Vendor.query.get_or_404(id)
     if request.method =='POST':                
         user = User(
         username = form.username.data,
@@ -287,14 +287,14 @@ def add_user(id):
         first_name = form.first_name.data,
         last_name =form.last_name.data,
         role_id = 4, #default to admin role 5
-        chamber_id = chamber.id
+        vendor_id = vendor.id
         )
         db.session.add(user)
         db.session.commit()
         flash("user created successfully")
 
     # # load user template
-    return redirect(url_for('settings.modules_roles_settings', id=chamber.id))
+    return redirect(url_for('settings.modules_roles_settings', id=vendor.id))
 
 
 @bp.route('/users/role/<int:id>', methods=['GET', 'POST'])
@@ -303,8 +303,8 @@ def add_user(id):
 def change_role(id):
     """  Add a user to the database    """
     user = User.query.get_or_404(id)
-    flash("user = {} chamber = {}".format(user.id, user.chamber.id))
-    return redirect(url_for('settings.modules_roles_settings', id=current_user.chamber.id))
+    flash("user = {} vendor = {}".format(user.id, user.vendor.id))
+    return redirect(url_for('settings.modules_roles_settings', id=current_user.vendor.id))
  
     
 
@@ -330,7 +330,7 @@ def activate_user(id):
         return redirect(url_for('settings.list_users'))
     return redirect(url_for('settings.list_users'))
 
-# set the chamber to null for super user to work on tables:
+# set the vendor to null for super user to work on tables:
 
        
 #  this functions is for edit users
@@ -346,7 +346,7 @@ def edit_user(id):
         user.first_name = form.first_name.data
         user.last_name = form.last_name.data
         user.role = form.role.data
-        user.chamber =  form.chamber.data
+        user.vendor =  form.vendor.data
 
         # db.session.add(user)        
         db.session.commit()
@@ -356,7 +356,7 @@ def edit_user(id):
     
     form.first_name.data = user.first_name
     form.last_name.data = user.last_name
-    form.chamber.data = user.chamber   
+    form.vendor.data = user.vendor   
     return render_template('settings/users/user_edit.html', action="Edit",
                          form=form,
                            user=user, title="Edit User")
@@ -404,7 +404,7 @@ def role_user(id):
     print(user.id)
     print(role.id)
 
-    return redirect(url_for('modules_roles_settings', id=user.chamber.id))   
+    return redirect(url_for('modules_roles_settings', id=user.vendor.id))   
     
     
   

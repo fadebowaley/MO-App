@@ -13,9 +13,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import func
 from app.payments import bp
 from app import db, session, sessionmaker
-from app.models import Chamber, User, Invoice, Tax, Detail, Account, Employee, Company, Payment
-from app.payments.forms import InvoiceForm
-from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from app.models import User
 
 
 

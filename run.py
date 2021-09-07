@@ -7,9 +7,7 @@ import click
 from datetime import datetime
 from config import Config
 from app import create_app, db
-# from app.check import get_applicant_info, get_cerpac_details, get_status_details,\
-    # search_by_cerpac, search_by_form
-from app.models import User, Employee, Passport
+from app.models import User
 from app.report import send_report, send_Birthday_messages, send_marketing_mails, \
     send_work_anniversary_messages
 
@@ -21,9 +19,10 @@ if os.path.exists(dotenv_path):
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 
+#  Initialise the app configuration
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User=User, Employee=Employee, Passport=Passport)
+    return dict(db=db, User=User)
 
 
 @app.cli.command()
@@ -41,9 +40,8 @@ def report():
     """ Run a monthly statutory report for Foldate App"""
     print('Feeding .......')
     users = User.query.all()
-    employees = Passport.query.all()
     print('here...',  str(users))
-    print('here...',  str(employees))
+   
 
 @app.cli.command()
 def scheduled():
@@ -53,6 +51,7 @@ def scheduled():
     print(str(datetime.utcnow()), 'This cron runs every 30 minutes')
     time.sleep(5)
     print(str(datetime.utcnow()), 'Done!')
+    
 
 @app.cli.command()
 def birthday():

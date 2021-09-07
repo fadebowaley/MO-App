@@ -13,7 +13,7 @@
     {% if current_user.active == False %}
            <a href = "{{url_for('auth.welcome_2fa')}}"><span  class="badge bg-inverse-primary"><h2> Click here to activate your </span>  Account  <span> with Google  one time Authenticator </span></h2> </a>
         {% else %}
-          <h3 class="page-title">{{current_user.chamber.company }}</h3>
+          <h3 class="page-title">{{current_user.vendor.company }}</h3>
          Welcome  <span class="badge bg-inverse-success">{{current_user.role.name}}</span>
           {{ message }} </span>
           <ul class="breadcrumb">

@@ -19,9 +19,9 @@ from flask_login import login_required, login_user,\
      logout_user, current_user
 from .email import send_email
 from app.auth.forms import LoginForm, ResetPasswordRequestForm, ResetPasswordForm, \
-    RegistrationForm, ChamberForm
+    RegistrationForm, VendorForm
 from werkzeug.utils import secure_filename
-from app.models import User, Chamber, Teamate
+from app.models import User
 from app.auth.email import  send_welcome_email, send_reset_email, \
     send_confirmation_email , send_set_email, send_invite_email
 import secrets
@@ -46,7 +46,7 @@ def Accountid():
 def before_request():
     try:
         if current_user.is_authenticated and current_user.confirmed:
-            if current_user.chamber_id == None or current_user.role_id == None:
+            if current_user.vendor_id == None or current_user.role_id == None:
                 # if request.blueprint != 'auth' and request.endpoint != 'static':
                 return redirect(url_for('auth.onboarding'))
     except:        
@@ -82,7 +82,7 @@ def save_picture(picture):
 # This is a way to set up a new company for a new user, we enforce the route
 @bp.route('/onboarding')
 def onboarding():
-    if current_user.chamber_id != None or current_user.role_id != None:                
+    if current_user.vendor_id != None or current_user.role_id != None:                
         return redirect(url_for('home.homepage'))
     return render_template('auth/onboarding.html')
 
@@ -141,7 +141,7 @@ def login():
                     session['email'] = form.email.data
                     value = session.get('email')                    
                     #User can signup. if user has no role                    
-                    if current_user.chamber_id == None:
+                    if current_user.vendor_id == None:
                         flash("We are delighted to have you onboard !, Quickly do a 2 minutes setup \
                             for your company so that you can have a \
                               wonderful clients experience")
@@ -162,8 +162,8 @@ def login():
 @bp.route('/welcome', methods=['GET', 'POST'])
 # @login_required
 def  welcome():
-    # We create a chamber that house the operations this will be assigned to users
-    form = ChamberForm()       
+    # We create a vendor that house the operations this will be assigned to users
+    form = VendorForm()       
     if request.method == 'POST':        
         company = form.company.data
         company_email  = form.company_email.data
@@ -185,7 +185,7 @@ def  welcome():
         if logo_file and request.form.get('logo_file') !="":
             save_logo_file = save_logo(logo_file)
                 
-        chamber = Chamber( 
+        vendor = Vendor( 
             logo_file = save_logo_file,
             company=str(company).upper(),
             company_email=str(form.company_email.data).upper(), 
@@ -202,7 +202,7 @@ def  welcome():
             )
         #Add to database  
         try:
-            db.session.add(chamber)
+            db.session.add(vendor)
             db.session.commit()
             # db.session.no_autoflush()
             print('New company account is created')
@@ -213,12 +213,12 @@ def  welcome():
             save_picture_profile = save_picture(image_file)          
         current_user.image_file = save_picture_profile
         current_user.role_id = role_id
-        current_user.chamber_id = chamber.id
+        current_user.vendor_id = vendor.id
         current_user.first_name = first_name
         current_user.last_name = last_name
         current_user.birthday = birthday
         current_user.gender = gender
-        current_user.accountid = chamber.accountid
+        current_user.accountid = vendor.accountid
         current_user.initiator = 1
                 # update user tables 
         try:
@@ -348,7 +348,7 @@ def set_password(token):
         print(email)
         session['email'] = email
         value = session.get('email')
-        if current_user.chamber_id == None:
+        if current_user.vendor_id == None:
                                                
             return redirect(url_for('auth.welcome'))
         
@@ -401,10 +401,10 @@ def account():
         if current_user.is_authenticated:
             user=User.query.filter_by(username=current_user.username) 
             
-            invitee= User.query.filter(User.chamber_id == current_user.chamber_id
+            invitee= User.query.filter(User.vendor_id == current_user.vendor_id
             ).filter(User.invitee != 0).all()          
         return render_template('auth/profile.html', title='Account', current_user=current_user,
-                               chamber = current_user.chamber, invitee=invitee)
+                               vendor = current_user.vendor, invitee=invitee)
      
 
 
@@ -414,17 +414,17 @@ def account():
 
 @bp.route("/account/Billings", methods=["POST", 'GET'])
 def Billings():    
-    chamber = Chamber.query.filter(Chamber.id==current_user.chamber_id).first()  
+    vendor = Vendor.query.filter(Vendor.id==current_user.vendor_id).first()  
     if current_user.initiator == 1:
             
-        if  not chamber.is_Billings == 1:
+        if  not vendor.is_Billings == 1:
                     
-            chamber.is_Billings = 1
+            vendor.is_Billings = 1
             db.session.commit()       
             flash('Billings module activated !')
         
         else:
-            chamber.is_Billings = 0             
+            vendor.is_Billings = 0             
             db.session.commit()           
             flash('Billings module deactivated !')
         
@@ -436,16 +436,16 @@ def Billings():
 @bp.route("/account/immigrations", methods=["POST", 'GET'])
 def immigrations():
     
-    chamber = Chamber.query.filter(Chamber.id==current_user.chamber_id).first()      
+    vendor = Vendor.query.filter(Vendor.id==current_user.vendor_id).first()      
     if current_user.initiator == 1:
         
-        if  not chamber.is_immigration == 1:        
-            chamber.is_immigration = 1
+        if  not vendor.is_immigration == 1:        
+            vendor.is_immigration = 1
             db.session.commit()       
             flash('immigration module activated !')
         
         else:
-            chamber.is_immigration = 0             
+            vendor.is_immigration = 0             
             db.session.commit()           
             flash('immigration module deactivated !')
     else:
@@ -455,14 +455,14 @@ def immigrations():
 
 @bp.route("/account/probates", methods=["POST", 'GET'])
 def probates():    
-    chamber = Chamber.query.filter(Chamber.id==current_user.chamber_id).first()      
-    if  not chamber.is_probate == 1:        
-        chamber.is_probate = 1
+    vendor = Vendor.query.filter(Vendor.id==current_user.vendor_id).first()      
+    if  not vendor.is_probate == 1:        
+        vendor.is_probate = 1
         db.session.commit()       
         flash('probate module activated !')
         
     else:
-        chamber.is_probate = 0             
+        vendor.is_probate = 0             
         db.session.commit()           
         flash('probate module deactivated !')
     return redirect(url_for('auth.account'))
@@ -471,14 +471,14 @@ def probates():
 @bp.route("/account/realestates", methods=["POST", 'GET'])
 def realestates():
     
-    chamber = Chamber.query.filter(Chamber.id==current_user.chamber_id).first()      
-    if  not chamber.is_realestate == 1:        
-        chamber.is_realestate = 1
+    vendor = Vendor.query.filter(Vendor.id==current_user.vendor_id).first()      
+    if  not vendor.is_realestate == 1:        
+        vendor.is_realestate = 1
         db.session.commit()       
         flash('realestate module activated !')
         
     else:
-        chamber.is_realestate = 0             
+        vendor.is_realestate = 0             
         db.session.commit()           
         flash('realestate module deactivated !')
     return redirect(url_for('auth.account'))
@@ -557,7 +557,7 @@ def team_invite():
                     role_id = role, 
                     username = name,
                     invitee = 1,
-        chamber_id = current_user.chamber_id, accountid = current_user.accountid,
+        vendor_id = current_user.vendor_id, accountid = current_user.accountid,
         invitee_name = name)
         flash('Activation link sent to your Teamates, please you may need to inform them')
         db.session.add(user)
@@ -609,7 +609,7 @@ def email_test():
 def team_view_invitees():
     
     user= User.query.filter(
-    User.chamber_id == current_user.chamber_id
+    User.vendor_id == current_user.vendor_id
     ).filter(User.invitee == 1).all()
 
     

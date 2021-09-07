@@ -7,11 +7,11 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms.fields.html5 import DateTimeField, DateField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import ValidationError, DataRequired, Length
-from app.models import Chamber, User, Role
+from app.models import Vendor, User, Role
 
 
 
-class ChamberModuleForm(FlaskForm):
+class VendorModuleForm(FlaskForm):
     """form for Updating the Module Settings """
     is_immigration = BooleanField(validators=[DataRequired(), ])
     is_probate = BooleanField(validators=[DataRequired(), ])
@@ -22,7 +22,7 @@ class ChamberModuleForm(FlaskForm):
     is_Billings = BooleanField(validators=[DataRequired(), ])
 
 
-class ChamberForm(FlaskForm):
+class VendorForm(FlaskForm):
     """  Form for creating Company """
     company = StringField('Company Name',validators=[DataRequired()])
     company_address =  TextAreaField(' Company Address', validators=[DataRequired()])
@@ -49,7 +49,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired(), EqualTo('confirm_password')])
     confirm_password = PasswordField('Confirm Password')
-    chamber = QuerySelectField('Company Posted', query_factory=lambda: Chamber.query.all(), get_label="company")
+    vendor = QuerySelectField('Company Posted', query_factory=lambda: Vendor.query.all(), get_label="company")
     role = QuerySelectField('Select Role', query_factory=lambda:Role.query.all(), get_label="name")
     
     submit = SubmitField('Register')
@@ -149,7 +149,7 @@ class UpdateAccountForm(FlaskForm):
 #      Probate Services
 #      Entertainment
 #      Vendor Services
-#      relationship with Chamber
+#      relationship with Vendor
 #      """
 
 

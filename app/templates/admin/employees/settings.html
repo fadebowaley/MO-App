@@ -68,7 +68,7 @@ title %}Home{% endblock %} {% block body %}
                   </h2>
                 </td>
                 <td>
-          {% if not current_user.chamber.is_immigration%}
+          {% if not current_user.vendor.is_immigration%}
                   <a
                     href=""
                     ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -92,7 +92,7 @@ title %}Home{% endblock %} {% block body %}
                 </td>
 
                 <td>
-    {% if not current_user.chamber.is_realestate%}
+    {% if not current_user.vendor.is_realestate%}
                   <a
                     href=""
                     ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -114,7 +114,7 @@ title %}Home{% endblock %} {% block body %}
                 </td>
  {% endif %}
                 <td>
-            {% if not current_user.chamber.is_probate%}
+            {% if not current_user.vendor.is_probate%}
                   <a
                     href=""
                     ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -138,7 +138,7 @@ title %}Home{% endblock %} {% block body %}
 
 <td>
 
-{% if not current_user.chamber.is_Iproperty%}
+{% if not current_user.vendor.is_Iproperty%}
 <a
 href=""
 ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -162,7 +162,7 @@ href=""
 
 
                 <td>
-                {% if not current_user.chamber.is_services%}
+                {% if not current_user.vendor.is_services%}
     <a
     href=""
 ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -184,7 +184,7 @@ href=""
                 </td>
 
                 <td>
-                        {% if not current_user.chamber.is_ent%}
+                        {% if not current_user.vendor.is_ent%}
                   <a
                     href=""
                     ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -206,7 +206,7 @@ href=""
                 </td>
 
           <td>
-                                  {% if not current_user.chamber.is_notified%}
+                                  {% if not current_user.vendor.is_notified%}
             <a
               href=""
               ><i class="fa fa-toggle-off fa-2x text-dark"></i>
@@ -228,7 +228,7 @@ href=""
                 </td>
 
                 <td>
-                                        {% if not current_user.chamber.is_Billings%}
+                                        {% if not current_user.vendor.is_Billings%}
                   <a
                     href=""
                     ><i class="fa fa-toggle-off fa-2x text-dark"></i>

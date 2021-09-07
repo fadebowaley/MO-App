@@ -23,25 +23,17 @@ from PIL import Image
 from ..decorators import admin_required, permission_required, account_required,\
     manager_required, super_required
 from app.admin import bp
-from app.admin.forms import  EmployeeForm, EmergencyForm, QuotaPositionForm,  \
-CerpacForm, RoleForm, CompanyForm, PassportForm, QuotaForm, \
-    LapForm, MainForm, QuotaRenewForm, CerpacRenewForm, FolderForm, \
-    FileForm, AssignForm, DependentForm
 from app import db, session, sessionmaker
-from app.models import  Employee, Cerpac, Company, Emergency, Chamber, Dependent,\
- Passport, Quota, User, Token_serial, Lap, Renew, Approve, Folder, File, Permission
+from app.models import  User
 
-
-@bp.app_context_processor
-def inject_permissions():
-    return dict(Permission=Permission)
-
+# @bp.app_context_processor
+# def inject_permissions():
+#     return dict(Permission=Permission)
 
 
 """
 1. views for the shop
 2. forms for listings
 3. 
-
 """
 

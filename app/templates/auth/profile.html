@@ -43,14 +43,14 @@
                                     <div class="col-md-5">
                                         <div class="profile-info-left">
                                             <h3 class="user-name m-t-0 mb-0">{{  current_user.first_name }}  {{  current_user.last_name }}</h3>
-                                            <h6 class="text-muted">{{ current_user.chamber.company }}</h6>
-                                            <small class="text-muted">{{ current_user.chamber.industry }}</small>
+                                            <h6 class="text-muted">{{ current_user.vendor.company }}</h6>
+                                            <small class="text-muted">{{ current_user.vendor.industry }}</small>
 											{% if current_user.active == True %}
                                             <div class="staff-id"> <span class="badge bg-inverse-success" >User active </span></div>
 											{%else%}
                                             <div class="staff-id"> <span class= "badge bg-inverse-danger" a href="">activate user </span></div>
 											{% endif %}
-                                            <div class="small doj text-muted">Website :{{current_user.chamber.website }}</div>
+                                            <div class="small doj text-muted">Website :{{current_user.vendor.website }}</div>
                                             <div class="staff-msg"><a class="btn btn-custom" href="{{url_for('message.sent_emails')}}">Send Message</a></div>
                                         </div>
                                     </div>
@@ -58,11 +58,11 @@
                                         <ul class="personal-info">
                                             <li>
                                                 <div class="title">Contact Phone:</div>
-                                                <div class="text"><a href="">{{ current_user.chamber.contact_phone }} </a></div>
+                                                <div class="text"><a href="">{{ current_user.vendor.contact_phone }} </a></div>
                                             </li>
                                             <li>
                                                 <div class="title">Company Email:</div>
-                                                <div class="text"><a href="">{{ current_user.chamber.company_email}}</a></div>
+                                                <div class="text"><a href="">{{ current_user.vendor.company_email}}</a></div>
                                             </li>
                                             <li>
                                                 <div class="title">Birthday:</div>
@@ -71,7 +71,7 @@
                                             </li>
                                             <li>
                                                 <div class="title">Address:</div>
-                                                <div class="text">{{current_user.chamber.company_address}}, {{current_user.chamber.city}}, {{current_user.chamber.state}}</div>
+                                                <div class="text">{{current_user.vendor.company_address}}, {{current_user.vendor.city}}, {{current_user.vendor.state}}</div>
                                             </li>
                                             <li>
                                                 <div class="title">Gender:</div>
@@ -82,7 +82,7 @@
                                                 <div class="text">
                                                    <div class="avatar-box">
                                                       <div class="avatar avatar-xs">
-                                                         <img src="/static/logos/{{current_user.chamber.logo_file }}" alt="">
+                                                         <img src="/static/logos/{{current_user.vendor.logo_file }}" alt="">
                                                       </div>
                                                    </div>
                                                    <a href="profile.html">
@@ -227,7 +227,7 @@
                                 <td>  
                                 
 
-                                {%if chamber.is_Billings == 1%}
+                                {%if vendor.is_Billings == 1%}
                                      
                                  <a  href="{{url_for('auth.Billings')}}"
                                     ><i class="fa fa-toggle-on fa-2x text-success"></i>
@@ -246,7 +246,7 @@
 
                                 </td>
                                 <td>
-                                {%if chamber.is_Billings == 1%} 
+                                {%if vendor.is_Billings == 1%} 
                                 <span class="badge bg-inverse-success">Service Active</span>
                                 {% else %}
                                 <span class="badge bg-inverse-danger">Service inactive!</span>
@@ -266,7 +266,7 @@
                                 </td>
                 
                                 <td> 
-                                {%if chamber.is_immigration == 1%}              
+                                {%if vendor.is_immigration == 1%}              
                                  <a  href="{{ url_for('auth.immigrations') }}"
                                     ><i class="fa fa-toggle-on fa-2x text-success"></i>
                                 </a>
@@ -278,7 +278,7 @@
                                 {% endif %}
                                 </td>
                                 <td>
-                                {%if chamber.is_immigration == 1%}              
+                                {%if vendor.is_immigration == 1%}              
 
                                 <span class="badge bg-inverse-success">Service Active</span>
                                 {% else %}

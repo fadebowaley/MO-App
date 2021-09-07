@@ -222,7 +222,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
           
         </ul>
       </li>
-    {%if current_user.chamber.is_immigration == 1 
+    {%if current_user.vendor.is_immigration == 1 
     or current_user.role.permissions == 31 %}
     <li class="submenu">
         <a href="#"
@@ -378,7 +378,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
       </li>
 
       {%else%} {%endif%}
-{%if current_user.chamber.is_Billings == 1 or current_user.role.permissions == 31 %}
+{%if current_user.vendor.is_Billings == 1 or current_user.role.permissions == 31 %}
       <li class="submenu">
         <a href="#"
           ><i class="fa fa-credit-card"> </i>
@@ -415,7 +415,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
         </ul>
       </li>
 {% else%} {% endif %}
-{%if current_user.chamber.is_realestate == 1 or current_user.role.permissions == 31 %}
+{%if current_user.vendor.is_realestate == 1 or current_user.role.permissions == 31 %}
       <li class="submenu">
         <a href="#"
           ><i class="la la-building-o"></i>
@@ -454,7 +454,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
         </ul>
       </li>
 {% else %} {% endif %}
-{%if current_user.chamber.is_probate == 1 or current_user.role.permissions == 31 %}
+{%if current_user.vendor.is_probate == 1 or current_user.role.permissions == 31 %}
       <li class="submenu">
         <a href="#"
           ><i class="la la-users "></i>
@@ -497,7 +497,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
         </ul>
       </li>
 {% else %} {% endif %}
-{%if current_user.chamber.is_services == 1  or current_user.role.permissions == 31 %}
+{%if current_user.vendor.is_services == 1  or current_user.role.permissions == 31 %}
       <li class="submenu">
         <a href="#"
           ><i class="fa fa-diamond"></i>
@@ -546,7 +546,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
       </li>
 {% else %} {% endif %}
 
-{%if current_user.chamber.is_Iproperty == 1  or current_user.role.permissions == 31 %}
+{%if current_user.vendor.is_Iproperty == 1  or current_user.role.permissions == 31 %}
       <li class="submenu">
         <a href="#"
           ><i class="fa fa-eye"></i>
@@ -609,7 +609,7 @@ href="{{ url_for('static', filename='img/favicon.png') }}"
               <span> Company settings</span>
                           
           <li>
-            <a href="{{ url_for('settings.list_chambers') }}">
+            <a href="{{ url_for('settings.list_vendors') }}">
             <i class="la la-eye"></i>
             <span> view companies</span></a>
           </li>
