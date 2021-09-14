@@ -9,21 +9,12 @@ from app.auth.email import  send_set_email
 from app.models import  User
 
 
- #add admin dashboard view
-@bp.route('/dashboard')
-@login_required
-def admin_dashboard():
-    pass    
-    
 
 @bp.route('/')
 def homepage():
     return render_template('home/home.html')
 
 
-@bp.route('/pricing')
-def pricing():
-    return render_template('home/pricing.html')
 
 def username_from(email):
     result = re.search(r'([\w\d\.]+)@[\w\d\.]+', email)
@@ -34,22 +25,4 @@ def username_from(email):
 
 
 
-@bp.route('/features')
-def features():
-    return render_template('home/features.html')
 
-
-@bp.route('/contact')
-def market():
-    return render_template('home/contact.html')
-
-
-
-@bp.route('/about')
-def error():
-    return render_template('home/about.html')
-
-
-@bp.route('/privacy')
-def policy():
-    return render_template('home/privacy-policy.html')

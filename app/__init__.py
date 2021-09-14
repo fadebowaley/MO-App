@@ -19,6 +19,9 @@ from sqlalchemy.orm import sessionmaker
  # global scope  
 Session = sessionmaker(autoflush=False)  
 
+
+
+
 fake = Faker()
 session = Session()
 db = SQLAlchemy()
@@ -76,16 +79,23 @@ def create_app(config_name):
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
 
-    #loading the js file 
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+    #loading the javascripts file 
     js = Bundle('app.js', 'bootstrap-datetimepicker.min.js', 'bootstrap.min.js', 'chart.js', 'dataTables.bootstrap4.min.js', 'dropfiles.js','fullcalendar.min.js', 'jquery.ui.touch-punch.min.js', 'jquery.slimscroll.min.js', 'mask.js', 'moment.min.js', 'multiselect.min.js', 'popper.min.js', 'select2.min.js','main.js', 'task.js', 'jquery-3.2.1.min.js','jquery.ui.touch-punch.min.js','jquery.maskedinput.min.js','chart.js','jquery.dataTables.min.js',   output='gen/fade.js' )
-    # style_bundle=Bundle('bootstrap.min.css', 'font-awesome.min.css','line-awesome.min.css','style.css', 'select2.min.css','fullcalendar.min.css', 'font-awesome.min.css','dataTables.bootstrap4.min.css', 'bootstrap-datetimepicker.min.css',  output='gen/fade.css'  )
     style_bundle=Bundle('css/bootstrap2.min.css', 'css/font-awesome2.min.css','css/line-awesome2.min.css','css/style2.css', 'css/select2.2.min.css','css/fullcalendar2.min.css', 'css/font-awesome2.min.css','css/dataTables2.bootstrap4.min.css', 'css/bootstrap2-datetimepicker.min.css',  output='gen/fade.css'  )
+    css_load = Bundle('css/autopart.css', 'css/electronic.css', 'css/furniture.css', 'css/home-kids.css', 'css/home-photo.css','vendor.css', 'css/market-place-1.css', 'css/market-place-2.css', 'css/market-place-3.css', 'css/market-place-4.css', 'medicine.css', 'organic.css', 'style.css','technology.css',  output='gen/mo-app.css')
+    
+    
+    css_load=Bundle()
     # css and js files for hompages and frontend
     homecss = Bundle('css/app.css', 'css/core.css', output = 'gen/home.css')
     homejs = Bundle('app_home.js', 'core_home.js', output = 'gen/home.js' )
     assets = Environment(app)
+    
     assets.register('main_js', js)
     assets.register('main_styles', style_bundle)
+    
     assets.register('home_js', homejs)
     assets.register('home_styles', homecss)
     

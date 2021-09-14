@@ -50,7 +50,7 @@ def before_request():
                 # if request.blueprint != 'auth' and request.endpoint != 'static':
                 return redirect(url_for('auth.onboarding'))
     except:        
-        return redirect(url_for('home.admin_dashboard'))                 
+        return redirect(url_for('home.homepage'))                 
        
 
 

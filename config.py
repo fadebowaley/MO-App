@@ -34,7 +34,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:ROOT@/mo-app'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:root@/yellow_market'
 
     
 
